@@ -30,8 +30,12 @@ body {
 
 # Title
 st.title("🎓 Student Exam Helper")
-st.write("Get quick, exam-ready answers instantly!")
-st.divider()
+
+@st.cache_data
+def get_data():
+    return load_data()
+
+data = get_data()
 
 # Input box (FIXED)
 question = st.text_input("✍️ Enter your question here")
