@@ -6,6 +6,8 @@ st.set_page_config(page_title="Student Helper", page_icon="🎓")
 
 # Load data
 data = load_data()
+
+# Sidebar
 st.sidebar.title("📌 About")
 st.sidebar.info("This tool helps students get quick exam-ready answers.")
 
@@ -26,11 +28,13 @@ body {
 st.title("🎓 Student Exam Helper")
 st.write("Get quick, exam-ready answers instantly!")
 st.divider()
-# Input box
-question = st.text_input("🧑 Ask your question:")
 
+# Input box (FIXED)
+question = st.text_input("✍️ Enter your question here")
+
+# Button
 if st.button("Get Answer 🚀"):
-    if question:
+    if question.strip():   # safer check
         with st.spinner("Thinking... 🤔"):
             answer = get_best_answer(question, data)
 
@@ -38,5 +42,6 @@ if st.button("Get Answer 🚀"):
         st.markdown(f"```\n{answer}\n```")
     else:
         st.warning("⚠️ Please enter a question")
+
 st.markdown("---")
 st.caption("Built by Arpit 🚀")
