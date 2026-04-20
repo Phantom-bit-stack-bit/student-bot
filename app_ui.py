@@ -5,7 +5,11 @@ from hh import get_best_answer, load_data
 st.set_page_config(page_title="Student Helper", page_icon="🎓")
 
 # Load data
-data = load_data()
+@st.cache_data
+def get_data():
+    return load_data()
+
+data = get_data()
 
 # Sidebar
 st.sidebar.title("📌 About")
