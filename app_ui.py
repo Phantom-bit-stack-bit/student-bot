@@ -54,9 +54,6 @@ suggestions = {
 st.markdown("### 💡 Try asking:")
 for q in suggestions[subject]:
     st.write(f"- {q}")
-    selected_subject = "science"
-else:
-    selected_subject = "commerce"
 answer_type = st.selectbox(
     "Choose answer type:",
     ["Short", "Detailed"]
