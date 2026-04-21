@@ -26,6 +26,14 @@ body {
 st.title("⚡ Quick Exam Helper")
 
 # Answer type selector
+subject = st.selectbox(
+    "Select Subject:",
+    ["Science", "Commerce"]
+)
+if subject == "Science":
+    selected_subject = "science"
+else:
+    selected_subject = "commerce"
 answer_type = st.selectbox(
     "Choose answer type:",
     ["Short", "Detailed"]
@@ -48,7 +56,7 @@ if st.button("Get Answer 🚀"):
         st.warning("⚠️ Please enter a proper question (e.g. 'What is gravity?')")
     else:
         with st.spinner("Thinking... 🤔"):
-            answer = get_best_answer(question, data, selected_type)
+            answer = get_best_answer(question, data, selected_type, selected_subject)
 
         st.markdown("### 🤖 Answer")
         st.success(answer)
