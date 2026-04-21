@@ -64,22 +64,20 @@ if answer_type == "Short":
 else:
     selected_type = "long"
 # Input box
+# Input box
 question = st.text_input("✍️ Enter your question here")
 
-# Button
-if question:
-    if st.button("Get Answer 🚀") or question:
-        if len(question.strip()) < 3:
-            st.warning("⚠️ Please enter a proper question (e.g. 'What is gravity?')")
-        else:
-            with st.spinner("Thinking... 🤔"):
+# Trigger: Enter OR Button
+trigger = st.button("Get Answer 🚀") or question
+
+if trigger:
+    if len(question.strip()) < 3:
+        st.warning("⚠️ Please enter a proper question (e.g. 'What is gravity?')")
+    else:
+        with st.spinner("Thinking... 🤔"):
             answer = get_best_answer(question, data, selected_type, selected_subject)
-            st.markdown("### 🤖 Answer")
-            st.success(answer)
-            if len(question.strip()) < 3:
-                st.warning("⚠️ Please enter a proper question (e.g. 'What is gravity?')")
-        else:
-            with st.spinner("Thinking... 🤔"):
-            answer = get_best_answer(question, data, selected_type, selected_subject)
+
+        st.markdown("### 🤖 Answer")
+        st.success(answer)
 st.markdown("---")
 st.caption("Built by Arpit 🚀")
