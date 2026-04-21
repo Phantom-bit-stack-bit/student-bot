@@ -1,270 +1,88 @@
-question,answer,type
-What is gravity?,Gravity is the force that pulls objects toward the Earth.,short
-Define gravity,Gravity is a force of attraction between masses.,short
-What is Newton's first law?,An object remains at rest or in motion unless acted upon by an external force.,short
-What is Newton's second law?,Force equals mass times acceleration (F = ma).,short
-What is Newton's third law?,For every action, there is an equal and opposite reaction.,short
-What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,short
-Define photosynthesis,It is the process of converting light energy into chemical energy in plants.,short
-What is cell?,A cell is the basic unit of life.,short
-Define cell,The smallest structural and functional unit of an organism.,short
-What is atom?,An atom is the smallest unit of matter.,short
-Define atom,It consists of protons, neutrons, and electrons.,short
-What is molecule?,A molecule is a group of atoms bonded together.,short
-Define molecule,Two or more atoms chemically bonded form a molecule.,short
-What is energy?,Energy is the ability to do work.,short
-Define energy,The capacity to perform work.,short
-What is work in physics?,Work is done when force moves an object.,short
-Define work,Work = Force × Distance.,short
-What is power?,Power is the rate of doing work.,short
-Define power,Power = Work/Time.,short
-What is speed?,Speed is distance traveled per unit time.,short
-Define speed,Speed = Distance/Time.,short
-What is velocity?,Velocity is speed with direction.,short
-Define velocity,It is the rate of change of displacement.,short
-What is acceleration?,Acceleration is change in velocity over time.,short
-Define acceleration,Acceleration = Change in velocity/Time.,short
-What is force?,Force is a push or pull on an object.,short
-Define force,It can change motion or shape.,short
-What is friction?,Friction is a force opposing motion.,short
-Define friction,It resists movement between surfaces.,short
-What is pressure?,Pressure is force per unit area.,short
-Define pressure,Pressure = Force/Area.,short
-What is density?,Density is mass per unit volume.,short
-Define density,Density = Mass/Volume.,short
-What is mass?,Mass is the amount of matter.,short
-Define mass,It measures inertia.,short
-What is weight?,Weight is force due to gravity.,short
-Define weight,Weight = mass × gravity.,short
-What is light?,Light is a form of energy that enables vision.,short
-Define light,It travels in waves.,short
-What is reflection?,Reflection is bouncing of light.,short
-Define reflection,Light returning from a surface.,short
-What is refraction?,Refraction is bending of light.,short
-Define refraction,Occurs when light passes between media.,short
-What is electricity?,Electricity is flow of electric charge.,short
-Define electricity,Movement of electrons.,short
-What is current?,Current is flow of charge.,short
-Define current,Measured in amperes.,short
-What is voltage?,Voltage is electric potential difference.,short
-Define voltage,Measured in volts.,short
-What is resistance?,Resistance opposes current flow.,short
-Define resistance,Measured in ohms.,short
-What is magnetism?,Magnetism is force exerted by magnets.,short
-Define magnetism,It attracts or repels materials.,short
-What is ecosystem?,An ecosystem includes living and non-living things interacting.,short
-Define ecosystem,A biological community with environment.,short
-What is food chain?,It shows energy flow in organisms.,short
-Define food chain,Sequence of eating and being eaten.,short
-What is respiration?,Respiration releases energy from food.,short
-Define respiration,Cellular process of energy production.,short
-What is digestion?,Digestion breaks down food.,short
-Define digestion,Process of converting food into nutrients.,short
-What is reproduction?,Reproduction produces new organisms.,short
-Define reproduction,Process of creating offspring.,short
-What is evaporation?,Evaporation is liquid to gas change.,short
-Define evaporation,Occurs at surface.,short
-What is condensation?,Gas changing to liquid.,short
-Define condensation,Opposite of evaporation.,short
-What is boiling?,Rapid vaporization of liquid.,short
-Define boiling,Occurs at boiling point.,short
-What is melting?,Solid to liquid change.,short
-Define melting,Occurs at melting point.,short
-What is freezing?,Liquid to solid change.,short
-Define freezing,Occurs at freezing point.,short
-What is solution?,A homogeneous mixture.,short
-Define solution,Solute + solvent mixture.,short
-What is solute?,Substance dissolved.,short
-Define solute,Minor component in solution.,short
-What is solvent?,Substance that dissolves.,short
-Define solvent,Major component in solution.,short
-What is acid?,Substance releasing H+ ions.,short
-Define acid,Has sour taste.,short
-What is base?,Substance releasing OH- ions.,short
-Define base,Has bitter taste.
-What is salt?,Product of acid-base reaction.,short
-Define salt,Neutral compound.,short
-What is metal?,Good conductor of heat and electricity.,short
-Define metal,Shiny and malleable substance.,short
-What is non-metal?,Poor conductor of electricity.,short
-Define non-metal,Not shiny or malleable.,short
-What is alloy?,Mixture of metals.,short
-Define alloy,Improves properties.,short
-What is carbon?,An element essential for life.,short
-Define carbon,Atomic number 6.,short
-What is oxygen?,Gas needed for respiration.,short
-Define oxygen,Supports combustion.,short
-What is hydrogen?,Lightest element.,short
-Define hydrogen,Used in fuel.,short
-What is nitrogen?,Gas in air.,short
-Define nitrogen,Important for plants.,short
-What is atmosphere?,Layer of gases around Earth.,short
-Define atmosphere,Protects Earth.,short
-What is water cycle?,Continuous water movement.,short
-Define water cycle,Evaporation, condensation, precipitation.,short
-What is inertia?,Inertia is the property of an object to resist any change in its state of motion.,short
-Define inertia,Inertia is the resistance of a body to change its motion or rest.,short
-What is momentum?,Momentum is the product of mass and velocity.,short
-Define momentum,Momentum = mass × velocity.,short
-What is kinetic energy?,Kinetic energy is the energy possessed by a moving object.,short
-Define kinetic energy,Kinetic energy = 1/2 × mass × velocity².,short
-What is potential energy?,Potential energy is stored energy due to position or state.,short
-Define potential energy,It depends on height or configuration of the object.,short
-What is law of conservation of energy?,Energy cannot be created or destroyed but can change forms.,short
-Define conservation of energy,Total energy of a system remains constant.,short
-What is wave?,A wave is a disturbance that transfers energy.,short
-Define wave,It travels through a medium or space.,short
-What is frequency?,Frequency is the number of waves per second.,short
-Define frequency,Measured in Hertz (Hz).,short
-What is time period?,Time taken for one complete oscillation.,short
-Define time period,Inverse of frequency.,short
-What is sound?,Sound is a form of energy that produces sensation of hearing.,short
-Define sound,It travels as waves through a medium.,short
-What is echo?,Echo is reflection of sound waves.,short
-Define echo,Sound heard after reflection.,short
-What is amplitude?,Amplitude is the height of a wave.,short
-Define amplitude,It determines loudness.,short
-What is transistor?,A transistor is a semiconductor device used to amplify signals.,short
-Define transistor,Used in electronic circuits.,short
-What is diode?,A diode allows current to flow in one direction.,short
-Define diode,Used in rectification.,short
-What is semiconductor?,A material with conductivity between conductor and insulator.,short
-Define semiconductor,Example: silicon.,short
-What is oxidation?,Oxidation is loss of electrons.,short
-Define oxidation,Often involves addition of oxygen.,short
-What is reduction?,Reduction is gain of electrons.,short
-Define reduction,Often involves removal of oxygen.,short
-What is chemical reaction?,A process where substances change into new substances.,short
-Define chemical reaction,Involves breaking and forming bonds.,short
-What is catalyst?,A substance that speeds up a reaction without being used up.,short
-Define catalyst,Remains unchanged after reaction.,short
-What is pH?,pH measures acidity or alkalinity of a solution.,short
-Define pH,Scale ranges from 0 to 14.,short
-What is neutralization?,Reaction between acid and base forming salt and water.,short
-Define neutralization,Acid + Base → Salt + Water.,short
-What is displacement reaction?,A more reactive element displaces another.,short
-Define displacement reaction,Occurs in reactivity series.,short
-What is double displacement reaction?,Exchange of ions between two compounds.,short
-Define double displacement reaction,Often forms precipitate.,short
-What is cell membrane?,Protective outer layer of a cell.,short
-Define cell membrane,Controls entry and exit of substances.,short
-What is nucleus?,Control center of the cell.,short
-Define nucleus,Contains genetic material.,short
-What is cytoplasm?,Gel-like substance inside cell.,short
-Define cytoplasm,Where cell activities occur.,short
-What is tissue?,Group of similar cells performing function.,short
-Define tissue,Example: muscle tissue.,short
-What is organ?,Group of tissues working together.,short
-Define organ,Example: heart.,short
-What is organ system?,Group of organs working together.,short
-Define organ system,Example: digestive system.,short
-What is blood?,Fluid connective tissue.,short
-Define blood,Transports oxygen and nutrients.,short
-What is heart?,Organ that pumps blood.,short
-Define heart,Part of circulatory system.,short
-What is lungs?,Organs used for breathing.,short
-Define lungs,Exchange gases.,short
-What is transpiration?,Loss of water from plants.,short
-Define transpiration,Occurs through stomata.,short
-What is stomata?,Small openings on leaves.,short
-Define stomata,Control gas exchange.,short
-What is chlorophyll?,Green pigment in plants.,short
-Define chlorophyll,Absorbs sunlight.,short
-What is reproduction in plants?,Process of producing new plants.,short
-Define plant reproduction,Can be sexual or asexual.,short
-What is algebra?,Branch of math dealing with symbols.,short
-Define algebra,Uses variables and equations.,short
-What is equation?,A statement showing equality.,short
-Define equation,Contains variables.,short
-What is linear equation?,Equation of degree 1.,short
-Define linear equation,Forms straight line.,short
-What is triangle?,A polygon with 3 sides.,short
-Define triangle,Sum of angles is 180°.,short
-What is circle?,A round shape with all points equidistant.,short
-Define circle,Center and radius define it.,short,
-What is radius?,Distance from center to edge.,short
-Define radius,Half of diameter.,short
-What is diameter?,Distance across circle through center.,short
-Define diameter,2 × radius.,short
-What is area?,Space inside a shape.,short
-Define area,Measured in square units.,short
-What is perimeter?,Boundary of a shape.,short
-Define perimeter,Sum of all sides.,short
-Explain Newton's first law of motion,Newton's first law states that an object remains at rest or in uniform motion unless acted upon by an external force. This law is also called the law of inertia and explains why objects resist changes in motion.,long
-Explain Newton's second law of motion,Newton's second law states that the force acting on an object is equal to the rate of change of its momentum. It is mathematically expressed as F = ma, where m is mass and a is acceleration.,long
-Explain Newton's third law of motion,Newton's third law states that for every action there is an equal and opposite reaction. Forces always occur in pairs acting on different bodies.,long
-Explain law of conservation of energy,The law of conservation of energy states that energy cannot be created or destroyed, only transformed from one form to another. Total energy in a closed system remains constant.,long
-Explain photosynthesis process,Photosynthesis is the process by which green plants make food using sunlight, carbon dioxide, and water. Chlorophyll absorbs sunlight and converts it into chemical energy, producing glucose and oxygen.,long
-Explain respiration in humans,Respiration is the process of breaking down food in cells to release energy. It involves inhalation of oxygen and exhalation of carbon dioxide.,long
-Explain difference between mass and weight,Mass is the amount of matter in a body and remains constant everywhere. Weight is the force exerted by gravity on the body and varies with location.,long
-Explain kinetic energy with formula,Kinetic energy is the energy possessed by a moving object. It is given by KE = 1/2 × m × v², where m is mass and v is velocity.,long
-Explain potential energy,Potential energy is the energy stored in an object due to its position or configuration. For example, gravitational potential energy depends on height.,long
-Explain friction and its types,Friction is a force that opposes motion between two surfaces. Types include static friction, sliding friction, rolling friction, and fluid friction.,long
-Explain reflection of light,Reflection is the bouncing back of light from a surface. The angle of incidence is equal to the angle of reflection.,long
-Explain refraction of light,Refraction is the bending of light when it passes from one medium to another due to change in speed.,long
-Explain Ohm's law,Ohm's law states that the current through a conductor is directly proportional to the voltage across it, provided temperature remains constant. V = IR.,long
-Explain electric current,Electric current is the flow of electric charge through a conductor. It is measured in amperes.,long
-Explain series and parallel circuits,In a series circuit, components are connected end-to-end and current is the same. In a parallel circuit, components are connected across branches and voltage is the same.,long
-Explain acids and bases,Acids are substances that release H+ ions in solution, while bases release OH- ions. Acids are sour and bases are bitter.,long
-Explain pH scale,The pH scale measures acidity or alkalinity from 0 to 14. Values below 7 are acidic, above 7 are basic, and 7 is neutral.,long
-Explain oxidation and reduction,Oxidation is loss of electrons while reduction is gain of electrons. Both occur together in redox reactions.,long
-Explain types of chemical reactions,Main types include combination, decomposition, displacement, and double displacement reactions.,long
-Explain cell structure,A cell consists of cell membrane, cytoplasm, and nucleus. The nucleus controls activities while cytoplasm carries out functions.,long
-Explain function of nucleus,Nucleus controls cell activities and contains genetic material (DNA).,long
-Explain tissues in plants,Plant tissues are of two types: meristematic (growth) and permanent (support and function).,long
-Explain tissues in animals,Animal tissues include epithelial, connective, muscular, and nervous tissues.,long
-Explain digestive system,The digestive system breaks down food into simpler substances for absorption and energy production.,long
-Explain circulatory system,The circulatory system transports blood, oxygen, nutrients, and waste throughout the body using the heart and blood vessels.,long
-Explain respiratory system,The respiratory system helps in breathing and exchange of gases (oxygen and carbon dioxide).,long
-Explain transpiration in plants,Transpiration is the loss of water vapor from plant leaves through stomata. It helps in cooling and nutrient transport.,long
-Explain algebra,Algebra is a branch of mathematics dealing with symbols and variables used to represent numbers and relationships.,long
-Explain linear equations,A linear equation is an equation of degree 1. Its graph is a straight line.,long
-Explain triangle properties,A triangle has three sides and angles, and the sum of its interior angles is 180 degrees.,long
-Explain circle properties,A circle is a set of points equidistant from a center. Important terms include radius, diameter, and circumference.,long
-Explain area of triangle,Area of a triangle is given by 1/2 × base × height.,long
-Explain perimeter,Perimeter is the total length of the boundary of a shape.,long
-Explain ecosystem,An ecosystem consists of living organisms interacting with each other and with their environment.,long
-Explain food chain,A food chain shows how energy flows from one organism to another in an ecosystem.,long
-Explain biodiversity,Biodiversity refers to the variety of living organisms in an area.,long
-Explain global warming,Global warming is the increase in Earth's average temperature due to greenhouse gases.,long
-Explain greenhouse effect,The greenhouse effect is the trapping of heat in Earth's atmosphere by gases like CO2.,long
-Explain water cycle,The water cycle includes evaporation, condensation, precipitation, and collection.,long
-Differentiate between mass and weight,Mass is the amount of matter in a body and remains constant everywhere. Weight is the force due to gravity and changes with location.,long
-Difference between speed and velocity,Speed is a scalar quantity with only magnitude. Velocity is a vector quantity with both magnitude and direction.,long
-Difference between distance and displacement,Distance is the total path covered. Displacement is the shortest distance between two points in a specific direction.,long
-Difference between kinetic and potential energy,Kinetic energy is due to motion while potential energy is stored due to position or configuration.,long
-Difference between AC and DC current,AC changes direction periodically while DC flows in one direction only.,long
-Difference between series and parallel circuits,In series current is same and voltage divides. In parallel voltage is same and current divides.,long
-Difference between plant cell and animal cell,Plant cells have cell wall and chloroplast while animal cells do not.,long
-Difference between mitosis and meiosis,Mitosis produces two identical cells while meiosis produces four genetically different cells.,long
-Difference between acids and bases,Acids release H+ ions while bases release OH- ions in solution.,long
-Difference between metals and non-metals,Metals are good conductors and malleable while non-metals are poor conductors and brittle.,long
-What is work in physics,Work is done when a force causes displacement in an object.,short
-Define work,Work = force × displacement.,short
-Explain work with example,Work is done when force moves an object. For example lifting a book requires work.,long
-What is power,Power is the rate of doing work.,short
-Define power,Power = work/time.,short
-Explain power,Power measures how quickly work is done. Higher power means work is done faster.,long
-What is pressure,Pressure is force applied per unit area.,short
-Define pressure,Pressure = force/area.,short
-Explain pressure with example,Pressure increases when area decreases. Sharp knives cut better because of higher pressure.,long
-What is density,Density is mass per unit volume.,short
-Define density,Density = mass/volume.,short
-Explain density,Density tells how compact a substance is. Objects with higher density are heavier for same volume.,long
-What is force,Force is a push or pull acting on an object.,short
-Define force,Force can change motion or shape of an object.,short
-Explain force,Force can start, stop, or change direction of motion of objects.,long
-What is energy,Energy is the ability to do work.,short
-Define energy,Energy exists in different forms like kinetic and potential.,short
-Explain energy,Energy enables work to be done and can change forms but cannot be destroyed.,long
-What is evaporation,Evaporation is the process of liquid turning into vapor.,short
-Explain evaporation,Evaporation occurs at surface and increases with temperature and wind.,long
-What is condensation,Condensation is conversion of vapor into liquid.,short
-Explain condensation,It occurs when vapor cools and forms droplets.,long
-What is solution in chemistry,A solution is a homogeneous mixture of solute and solvent.,short
-Explain solution,A solution has uniform composition throughout.,long
-What is solute,Substance that gets dissolved.,short
-What is solvent,Substance that dissolves solute.,short
-Explain solute and solvent,Solute dissolves in solvent to form solution like salt in water.,long
-
+question,answer,type,subject
+What is energy?,Energy is the ability to do work.,short,science
+Explain energy,Energy is the capacity to perform work and exists in forms like kinetic and potential.,long,science
+Define energy,Energy is the ability of a body to do work.,short,science
+What is force?,Force is a push or pull acting on an object.,short,science
+Explain force,Force can change the motion or shape of an object.,long,science
+Define force,Force is an interaction that changes motion.,short,science
+What is work?,Work is done when a force causes displacement.,short,science
+Explain work,Work occurs when force moves an object in its direction.,long,science
+Define work,Work = force × displacement.,short,science
+What is power?,Power is the rate of doing work.,short,science
+Explain power,Power measures how quickly work is done.,long,science
+Define power,Power = work/time.,short,science
+What is pressure?,Pressure is force per unit area.,short,science
+Explain pressure,Pressure increases when force increases or area decreases.,long,science
+Define pressure,Pressure = force/area.,short,science
+What is density?,Density is mass per unit volume.,short,science
+Explain density,Density shows how compact a substance is.,long,science
+Define density,Density = mass/volume.,short,science
+What is gravity?,Gravity is the force that attracts objects toward Earth.,short,science
+Explain gravity,Gravity pulls objects toward Earth and gives them weight.,long,science
+Define gravity,Gravity is a force of attraction between masses.,short,science
+What is friction?,Friction is a force that opposes motion.,short,science
+Explain friction,Friction resists motion between surfaces in contact.,long,science
+Define friction,Friction is a resistive force.,short,science
+What is inertia?,Inertia is resistance to change in motion.,short,science
+Explain inertia,Inertia keeps objects in rest or motion unless acted upon.,long,science
+Define inertia,Inertia is a property of matter.,short,science
+What is momentum?,Momentum is mass × velocity.,short,science
+Explain momentum,Momentum depends on mass and velocity of object.,long,science
+Define momentum,Momentum = mass × velocity.,short,science
+What is kinetic energy?,Energy due to motion.,short,science
+Explain kinetic energy,Kinetic energy depends on speed and mass.,long,science
+Define kinetic energy,KE = 1/2 mv².,short,science
+What is potential energy?,Stored energy due to position.,short,science
+Explain potential energy,Potential energy depends on height or position.,long,science
+Define potential energy,Energy stored in an object.,short,science
+Difference between kinetic and potential energy,Kinetic energy is due to motion while potential energy is stored.,long,science
+Difference between mass and weight,Mass is constant while weight depends on gravity.,long,science
+Difference between speed and velocity,Speed has magnitude only while velocity has direction.,long,science
+Difference between distance and displacement,Distance is total path while displacement is shortest path.,long,science
+What is current?,Flow of electric charge.,short,science
+Explain current,Electric current is movement of electrons in a conductor.,long,science
+Define current,Measured in amperes.,short,science
+What is voltage?,Electric potential difference.,short,science
+Explain voltage,Voltage pushes current through a circuit.,long,science
+Define voltage,Measured in volts.,short,science
+What is resistance?,Opposition to current.,short,science
+Explain resistance,Resistance limits current flow in a circuit.,long,science
+Define resistance,Measured in ohms.,short,science
+What is Ohm's law?,Relation between V, I, R.,short,science
+Explain Ohm's law,Ohm's law states V = IR.,long,science
+Define Ohm's law,Voltage = current × resistance.,short,science
+What is photosynthesis?,Process of making food in plants.,short,science
+Explain photosynthesis,Plants use sunlight to convert CO2 and water into food.,long,science
+Define photosynthesis,Food-making process in plants.,short,science
+What is respiration?,Release of energy from food.,short,science
+Explain respiration,Respiration breaks down food using oxygen.,long,science
+Define respiration,Energy releasing process.,short,science
+What is ecosystem?,Living and non-living interaction.,short,science
+Explain ecosystem,Ecosystem includes organisms interacting with environment.,long,science
+Define ecosystem,System of organisms and environment.,short,science
+What is food chain?,Flow of energy.,short,science
+Explain food chain,Energy passes from one organism to another.,long,science
+Define food chain,Sequence of organisms eating each other.,short,science
+What is business?,Business is an activity of producing or buying and selling goods and services.,short,commerce
+Explain business,Business involves continuous economic activities to earn profit by satisfying needs.,long,commerce
+What is profit?,Profit is the excess of income over expenses.,short,commerce
+Explain profit,Profit is the financial gain when revenue exceeds cost.,long,commerce
+What is revenue?,Revenue is the total income from sales.,short,commerce
+Define revenue,Revenue is the amount earned from business operations.,short,commerce
+What is capital?,Capital is the money invested in a business.,short,commerce
+Explain capital,Capital is used to start and run business activities.,long,commerce
+What is assets?,Assets are resources owned by a business.,short,commerce
+Define assets,Assets have economic value and can generate income.,short,commerce
+What is liability?,Liability is a financial obligation.,short,commerce
+Define liability,Liabilities are debts owed by a business.,short,commerce
+Difference between asset and liability,Assets bring value while liabilities are obligations.,long,commerce
+What is accounting?,Accounting is the process of recording financial transactions.,short,commerce
+Explain accounting,Accounting involves recording, summarizing and analyzing financial data.,long,commerce
+What is balance sheet?,A balance sheet shows assets and liabilities.,short,commerce
+Explain balance sheet,It shows financial position at a specific time.,long,commerce
+What is income statement?,It shows profit or loss of a business.,short,commerce
+Explain income statement,It summarizes revenues and expenses over a period.,long,commerce
+What is debit?,Debit increases assets or expenses.,short,commerce
+What is credit?,Credit increases liabilities or income.,short,commerce
+Difference between debit and credit,Debit and credit are opposite entries in accounting.,long,commerce
 
