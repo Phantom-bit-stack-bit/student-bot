@@ -43,13 +43,15 @@ def similarity(q1, q2):
     return len(common) / len(words1)
 
 def get_best_answer(user_question, data, answer_type="short", subject="science"):
-    if "subject" in item and item["subject"] != subject:
-        continue
     best_score = 0
     best_answer = "I’m not sure 🤔 Try asking in a different way."
 
     for item in data:
-        # 🔥 skip if type doesn't match
+        # Filter by subject
+        if "subject" in item and item["subject"] != subject:
+            continue
+
+        # Filter by type
         if "type" in item and item["type"] != answer_type:
             continue
 
