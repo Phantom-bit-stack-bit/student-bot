@@ -12,6 +12,12 @@ def load_data():
 def normalize(word):
     if word.startswith("gravit"):
         return "gravity"
+    if word.startswith("weigh"):
+        return "weight"
+    if word.startswith("dens"):
+        return "density"
+    if word.startswith("mass"):
+        return "mass"
     return word
 
 def text_to_words(text):
@@ -31,7 +37,10 @@ def similarity(q1, q2):
 
     common = words1.intersection(words2)
 
-    return len(common) / (len(words1) + len(words2) + 1)
+    if not words1:
+        return 0
+
+    return len(common) / len(words1)
 
 def get_best_answer(user_question, data):
     best_score = 0
@@ -44,7 +53,7 @@ def get_best_answer(user_question, data):
             best_score = score
             best_answer = item["answer"]
 
-    if best_score < 0.2:
+    if best_score < 0.1:
         return "I’m not sure 🤔 Try asking in a different way."
 
     return best_answer
