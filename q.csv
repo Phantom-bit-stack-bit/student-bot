@@ -191,4 +191,44 @@ What is area?,Space inside a shape.
 Define area,Measured in square units.
 What is perimeter?,Boundary of a shape.
 Define perimeter,Sum of all sides.
+question,answer
+Explain Newton's first law of motion,Newton's first law states that an object remains at rest or in uniform motion unless acted upon by an external force. This law is also called the law of inertia and explains why objects resist changes in motion.
+Explain Newton's second law of motion,Newton's second law states that the force acting on an object is equal to the rate of change of its momentum. It is mathematically expressed as F = ma, where m is mass and a is acceleration.
+Explain Newton's third law of motion,Newton's third law states that for every action there is an equal and opposite reaction. Forces always occur in pairs acting on different bodies.
+Explain law of conservation of energy,The law of conservation of energy states that energy cannot be created or destroyed, only transformed from one form to another. Total energy in a closed system remains constant.
+Explain photosynthesis process,Photosynthesis is the process by which green plants make food using sunlight, carbon dioxide, and water. Chlorophyll absorbs sunlight and converts it into chemical energy, producing glucose and oxygen.
+Explain respiration in humans,Respiration is the process of breaking down food in cells to release energy. It involves inhalation of oxygen and exhalation of carbon dioxide.
+Explain difference between mass and weight,Mass is the amount of matter in a body and remains constant everywhere. Weight is the force exerted by gravity on the body and varies with location.
+Explain kinetic energy with formula,Kinetic energy is the energy possessed by a moving object. It is given by KE = 1/2 × m × v², where m is mass and v is velocity.
+Explain potential energy,Potential energy is the energy stored in an object due to its position or configuration. For example, gravitational potential energy depends on height.
+Explain friction and its types,Friction is a force that opposes motion between two surfaces. Types include static friction, sliding friction, rolling friction, and fluid friction.
+Explain reflection of light,Reflection is the bouncing back of light from a surface. The angle of incidence is equal to the angle of reflection.
+Explain refraction of light,Refraction is the bending of light when it passes from one medium to another due to change in speed.
+Explain Ohm's law,Ohm's law states that the current through a conductor is directly proportional to the voltage across it, provided temperature remains constant. V = IR.
+Explain electric current,Electric current is the flow of electric charge through a conductor. It is measured in amperes.
+Explain series and parallel circuits,In a series circuit, components are connected end-to-end and current is the same. In a parallel circuit, components are connected across branches and voltage is the same.
+Explain acids and bases,Acids are substances that release H+ ions in solution, while bases release OH- ions. Acids are sour and bases are bitter.
+Explain pH scale,The pH scale measures acidity or alkalinity from 0 to 14. Values below 7 are acidic, above 7 are basic, and 7 is neutral.
+Explain oxidation and reduction,Oxidation is loss of electrons while reduction is gain of electrons. Both occur together in redox reactions.
+Explain types of chemical reactions,Main types include combination, decomposition, displacement, and double displacement reactions.
+Explain cell structure,A cell consists of cell membrane, cytoplasm, and nucleus. The nucleus controls activities while cytoplasm carries out functions.
+Explain function of nucleus,Nucleus controls cell activities and contains genetic material (DNA).
+Explain tissues in plants,Plant tissues are of two types: meristematic (growth) and permanent (support and function).
+Explain tissues in animals,Animal tissues include epithelial, connective, muscular, and nervous tissues.
+Explain digestive system,The digestive system breaks down food into simpler substances for absorption and energy production.
+Explain circulatory system,The circulatory system transports blood, oxygen, nutrients, and waste throughout the body using the heart and blood vessels.
+Explain respiratory system,The respiratory system helps in breathing and exchange of gases (oxygen and carbon dioxide).
+Explain transpiration in plants,Transpiration is the loss of water vapor from plant leaves through stomata. It helps in cooling and nutrient transport.
+Explain algebra,Algebra is a branch of mathematics dealing with symbols and variables used to represent numbers and relationships.
+Explain linear equations,A linear equation is an equation of degree 1. Its graph is a straight line.
+Explain triangle properties,A triangle has three sides and angles, and the sum of its interior angles is 180 degrees.
+Explain circle properties,A circle is a set of points equidistant from a center. Important terms include radius, diameter, and circumference.
+Explain area of triangle,Area of a triangle is given by 1/2 × base × height.
+Explain perimeter,Perimeter is the total length of the boundary of a shape.
+Explain ecosystem,An ecosystem consists of living organisms interacting with each other and with their environment.
+Explain food chain,A food chain shows how energy flows from one organism to another in an ecosystem.
+Explain biodiversity,Biodiversity refers to the variety of living organisms in an area.
+Explain global warming,Global warming is the increase in Earth's average temperature due to greenhouse gases.
+Explain greenhouse effect,The greenhouse effect is the trapping of heat in Earth's atmosphere by gases like CO2.
+Explain water cycle,The water cycle includes evaporation, condensation, precipitation, and collection.
 
