@@ -44,11 +44,11 @@ question = st.text_input("✍️ Enter your question here")
 
 # Button
 if st.button("Get Answer 🚀"):
-    if question.strip():
+    if len(question.strip()) < 3:
+        st.warning("⚠️ Please enter a proper question")
+    else:
         with st.spinner("Thinking... 🤔"):
             answer = get_best_answer(question, data, selected_type)
 
         st.markdown("### 🤖 Answer")
         st.success(answer)
-    if len(question.strip()) < 3:
-    st.warning("⚠️ Please enter a proper question")
