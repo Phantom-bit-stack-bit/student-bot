@@ -31,6 +31,17 @@ subject = st.selectbox(
     ["Science", "Commerce"]
 )
 if subject == "Science":
+    st.markdown("### 💡 Try asking:")
+    st.write("- What is gravity?")
+    st.write("- Explain photosynthesis")
+    st.write("- Difference between mass and weight")
+
+elif subject == "Commerce":
+    st.markdown("### 💡 Try asking:")
+    st.write("- What is business?")
+    st.write("- Explain profit")
+    st.write("- Difference between assets and liabilities")
+if subject == "Science":
     selected_subject = "science"
 else:
     selected_subject = "commerce"
