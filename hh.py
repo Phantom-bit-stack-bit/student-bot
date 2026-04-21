@@ -23,13 +23,13 @@ def text_to_words(text):
     return set(filtered)
 
 
-def similarity(q1, q2):
+ddef similarity(q1, q2):
     words1 = text_to_words(q1)
     words2 = text_to_words(q2)
 
     common = words1.intersection(words2)
-    return len(common) / (len(words1) + 1)
-    return len(common)
+
+    return len(common) / (len(words1) + len(words2) + 1)
 
 
 def get_best_answer(user_question, data):
@@ -42,6 +42,11 @@ def get_best_answer(user_question, data):
         if score > best_score:
             best_score = score
             best_answer = item["answer"]
+
+    if best_score < 0.2:
+        return "I’m not sure 🤔 Try asking in a different way."
+
+    return best_answer
 
     return best_answer
 def normalize(word):
