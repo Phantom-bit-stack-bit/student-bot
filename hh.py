@@ -44,7 +44,7 @@ def similarity(q1, q2):
 
 def get_best_answer(user_question, data, answer_type="short", subject="science"):
     if "subject" in item and item["subject"] != subject:
-    continue
+        continue
     best_score = 0
     best_answer = "I’m not sure 🤔 Try asking in a different way."
 
