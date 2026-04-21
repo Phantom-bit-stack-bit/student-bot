@@ -52,3 +52,5 @@ if st.button("Get Answer 🚀"):
 
         st.markdown("### 🤖 Answer")
         st.success(answer)
+st.markdown("---")
+st.caption("Built by Arpit 🚀")
