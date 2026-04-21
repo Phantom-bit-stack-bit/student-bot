@@ -81,8 +81,5 @@ if question:
     else:
         with st.spinner("Thinking... 🤔"):
             answer = get_best_answer(question, data, selected_type, selected_subject)
-
-        st.markdown("### 🤖 Answer")
-        st.success(answer)
 st.markdown("---")
 st.caption("Built by Arpit 🚀")
