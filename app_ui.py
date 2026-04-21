@@ -67,7 +67,15 @@ else:
 question = st.text_input("✍️ Enter your question here")
 
 # Button
-if st.button("Get Answer 🚀"):
+if question:
+    if len(question.strip()) < 3:
+        st.warning("⚠️ Please enter a proper question (e.g. 'What is gravity?')")
+    else:
+        with st.spinner("Thinking... 🤔"):
+            answer = get_best_answer(question, data, selected_type, selected_subject)
+
+        st.markdown("### 🤖 Answer")
+        st.success(answer)
     if len(question.strip()) < 3:
         st.warning("⚠️ Please enter a proper question (e.g. 'What is gravity?')")
     else:
