@@ -23,7 +23,7 @@ body {
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🎓 Student Exam Helper")
+st.title("⚡ Quick Exam Helper")
 
 # Answer type selector
 answer_type = st.selectbox(
@@ -49,6 +49,6 @@ if st.button("Get Answer 🚀"):
             answer = get_best_answer(question, data, selected_type)
 
         st.markdown("### 🤖 Answer")
-        st.markdown(f"```\n{answer}\n```")
-    else:
-        st.warning("⚠️ Please enter a question")
+        st.success(answer)
+    if len(question.strip()) < 3:
+    st.warning("⚠️ Please enter a proper question")
