@@ -25,17 +25,27 @@ body {
 
 st.title("🎓 Student Exam Helper")
 
+# Answer type selector
+answer_type = st.selectbox(
+    "Choose answer type:",
+    ["Short", "Detailed"]
+)
+
+if answer_type == "Short":
+    selected_type = "short"
+else:
+    selected_type = "long"
+
+# Input box
 question = st.text_input("✍️ Enter your question here")
 
+# Button
 if st.button("Get Answer 🚀"):
     if question.strip():
         with st.spinner("Thinking... 🤔"):
-            answer = get_best_answer(question, data)
+            answer = get_best_answer(question, data, selected_type)
 
         st.markdown("### 🤖 Answer")
         st.markdown(f"```\n{answer}\n```")
     else:
         st.warning("⚠️ Please enter a question")
-
-st.markdown("---")
-st.caption("Built by Arpit 🚀")
