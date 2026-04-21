@@ -48,20 +48,3 @@ def normalize(word):
     if word.startswith("gravit"):
         return "gravity"
     return word
-
-# MAIN
-data = load_data()
-
-print("\n🎓 === Student AI Helper ===\n")
-
-while True:
-    user_input = input("🧑 Ask your question: ")
-
-    if user_input.lower() in ["exit", "quit"]:
-        break
-
-    answer = get_best_answer(user_input, data)
-
-    print("\n🤖 Answer:")
-    print(answer)
-    print("\n⚡ Generated instantly\n")
