@@ -35,7 +35,10 @@ if answer_type == "Short":
     selected_type = "short"
 else:
     selected_type = "long"
-
+st.markdown("### 💡 Try asking:")
+st.write("- What is gravity?")
+st.write("- Explain photosynthesis")
+st.write("- Difference between mass and weight")
 # Input box
 question = st.text_input("✍️ Enter your question here")
 
