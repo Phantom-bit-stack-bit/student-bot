@@ -25,11 +25,19 @@ body {
 
 st.title("⚡ Quick Exam Helper")
 
-# Answer type selector
+# Subject selector
 subject = st.selectbox(
     "Select Subject:",
     ["Science", "Commerce"]
 )
+
+# Convert subject properly
+if subject == "Science":
+    selected_subject = "science"
+else:
+    selected_subject = "commerce"
+
+# Suggestions
 suggestions = {
     "Science": [
         "What is gravity?",
