@@ -30,18 +30,22 @@ subject = st.selectbox(
     "Select Subject:",
     ["Science", "Commerce"]
 )
-if subject == "Science":
-    st.markdown("### 💡 Try asking:")
-    st.write("- What is gravity?")
-    st.write("- Explain photosynthesis")
-    st.write("- Difference between mass and weight")
+suggestions = {
+    "Science": [
+        "What is gravity?",
+        "Explain photosynthesis",
+        "Difference between mass and weight"
+    ],
+    "Commerce": [
+        "What is business?",
+        "Explain profit",
+        "Difference between assets and liabilities"
+    ]
+}
 
-elif subject == "Commerce":
-    st.markdown("### 💡 Try asking:")
-    st.write("- What is business?")
-    st.write("- Explain profit")
-    st.write("- Difference between assets and liabilities")
-if subject == "Science":
+st.markdown("### 💡 Try asking:")
+for q in suggestions[subject]:
+    st.write(f"- {q}")
     selected_subject = "science"
 else:
     selected_subject = "commerce"
