@@ -65,24 +65,18 @@ else:
     selected_type = "long"
 # Input box
 # Input box
-question = st.text_input("✍️ Enter your question here")
-if "last_q" not in st.session_state:
-    st.session_state.last_q = ""
+with st.form("qa_form"):
+    question = st.text_input("✍️ Enter your question here")
+    submitted = st.form_submit_button("Get Answer 🚀")
 
-# Trigger: Enter OR Button
-trigger = st.button("Get Answer 🚀") or question
-
-if trigger:
-    if question == st.session_state.last_q:
-        st.info("You already asked this 😊")
-    elif len(question.strip()) < 3:
+if submitted:
+    if len(question.strip()) < 3:
         st.warning("⚠️ Please enter a proper question")
     else:
-        st.session_state.last_q = question
-
         with st.spinner("Thinking... 🤔"):
             answer, matched_q = get_best_answer(question, data, selected_type, selected_subject)
 
+        st.markdown("### 🤖 Answer")
         st.success(answer)
         st.caption(f"Matched with: {matched_q}")
         st.markdown("### 🤖 Answer")
