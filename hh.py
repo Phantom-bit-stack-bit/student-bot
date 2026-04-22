@@ -24,6 +24,8 @@ def normalize(word):
         return "energy"
     if word.startswith("velo"):
         return "velocity"
+    if len(question.strip().split()) < 2:
+        st.warning("⚠️ Try asking a full question (e.g. 'What is gravity?')")
     return word
 
 def text_to_words(text):
