@@ -1,6 +1,6 @@
 import csv
 import string
-
+import difflib
 def load_data():
     data = []
     with open("q.csv", newline='', encoding='utf-8') as file:
@@ -61,14 +61,19 @@ def similarity(q1, q2):
     words2 = text_to_words(q2)
 
     common = words1.intersection(words2)
-
     score = len(common)
 
-    # boost exact keyword match
+    # 🔥 NEW: fuzzy matching for typos
+    for w1 in words1:
+        for w2 in words2:
+            ratio = difflib.SequenceMatcher(None, w1, w2).ratio()
+            if ratio > 0.8:   # similar words
+                score += 0.5
+
+    # existing boosts
     if any(word in q2.lower() for word in words1):
         score += 1
 
-    # boost full phrase match
     if q1.lower() in q2.lower():
         score += 2
 
