@@ -141,7 +141,5 @@ if st.session_state.chat_history:
     with col2:
         if st.button("👎 Not helpful"):
             st.warning("Got it! Will improve.")
-if chat["corrected"] != chat["question"].lower():
-    st.caption(f"Processed as: {chat['corrected']}")
 st.markdown("---")
 st.caption("🚀Build by Arpit.")
