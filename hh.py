@@ -68,6 +68,6 @@ def get_best_answer(user_question, data, answer_type="short", subject="science")
             best_answer = item["answer"]
 
     if best_score < 0.1:
-        return "I’m not sure 🤔 Try asking in a different way."
+        return "I couldn’t find an exact answer 😅 Try rephrasing or selecting another type."
 
     return best_answer
