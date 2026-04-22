@@ -1,10 +1,5 @@
 import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
-import csv
-
-with open("user_logs.csv", "a", newline='', encoding="utf-8") as f:
-    writer = csv.writer(f)
-    writer.writerow([question, corrected_question, answer])
 st.set_page_config(page_title="Student Helper", page_icon="🎓")
 
 def get_data():
