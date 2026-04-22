@@ -1,7 +1,5 @@
 import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
-import csv
-from utils import save_log, build_vocab, auto_correct
 st.set_page_config(page_title="Student Helper", page_icon="🎓")
 
 def get_data():
