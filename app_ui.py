@@ -83,17 +83,23 @@ if submitted:
     if len(question.strip()) < 3:
         st.warning("⚠️ Please enter a proper question")
 
-    elif (question.strip().lower(), selected_type, selected_subject) == st.session_state.last_q:
-        st.info("You already asked this 😊")
-
     else:
+        corrected_question = auto_correct(question, vocab)  # ✅ FIRST
+
+        answer, matched_q = get_best_answer(
+            corrected_question,
+            data,
+            selected_type,
+            selected_subject
+        )
+
+        # ✅ THEN store
         st.session_state.chat_history.append({
             "question": question,
             "corrected": corrected_question,
             "answer": answer,
             "matched": matched_q
         })
-
         # 🔥 Auto-correct
         corrected_question = auto_correct(question, vocab)
 
