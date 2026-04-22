@@ -86,6 +86,5 @@ if trigger:
         st.success(answer)
         st.caption(f"Matched with: {matched_q}")
         st.markdown("### 🤖 Answer")
-        st.success(answer)
 st.markdown("---")
 st.caption("Built by Arpit 🚀")
