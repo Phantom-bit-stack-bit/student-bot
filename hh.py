@@ -25,7 +25,26 @@ def normalize(word):
     if word.startswith("velo"):
         return "velocity"
     return word
+def normalize(word):
+    word = word.lower()
 
+    synonyms = {
+        "gravitation": "gravity",
+        "force": "force",
+        "push": "force",
+        "pull": "force",
+        "purchase": "buy",
+        "buying": "buy",
+        "sale": "sell",
+        "selling": "sell",
+        "income": "revenue",
+        "earning": "revenue",
+        "profit": "profit",
+        "gain": "profit",
+        "loss": "loss"
+    }
+
+    return synonyms.get(word, word)
 def text_to_words(text):
     stopwords = {"what", "is", "the", "a", "an", "explain", "define", "tell", "me"}
     
