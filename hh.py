@@ -28,6 +28,10 @@ def normalize(word):
     if word.startswith("velo"):
         return "velocity"
     return word
+def auto_correct(sentence, vocab):
+    words = sentence.lower().split()
+    corrected = [correct_word(w, vocab) for w in words]
+    return " ".join(corrected)
 def normalize(word):
     word = word.lower()
 
