@@ -123,18 +123,30 @@ if submitted:
 
         st.markdown("### 🤖 Answer")
         st.success(answer)
+        save_log(question, corrected_question, answer)
+        st.session_state.last_interaction = {
+            "question": question,
+            "corrected": corrected_question,
+            "answer": answer
+        }
         st.caption(f"Matched with: {matched_q}")
 
         print("User asked:", question)
 st.write("DEBUG:", selected_subject)
 col1, col2 = st.columns(2)
 
-with col1:
-    if st.button("👍 Helpful"):
-        print("Helpful:", question)
+if "last_interaction" in st.session_state:
+    data = st.session_state.last_interaction
 
-with col2:
-    if st.button("👎 Not helpful"):
-        print("Not helpful:", question)
+    with col1:
+        if st.button("👍 Helpful"):
+            save_log(data["question"], data["corrected"], data["answer"], "helpful")
+            st.success("Thanks for feedback!")
+
+    with col2:
+        if st.button("👎 Not helpful"):
+            save_log(data["question"], data["corrected"], data["answer"], "not helpful")
+            st.warning("Got it! Will improve.")
+
 st.markdown("---")
 st.caption("🚀Build by Arpit.")
