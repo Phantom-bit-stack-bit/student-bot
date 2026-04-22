@@ -2,17 +2,6 @@ import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
 import csv
 
-def save_log(question, corrected, answer, feedback=""):
-    file_exists = os.path.exists("user_logs.csv")
-
-    with open("user_logs.csv", "a", newline='', encoding="utf-8") as f:
-        writer = csv.writer(f)
-
-        # Add header only once
-        if not file_exists:
-            writer.writerow(["question", "corrected", "answer", "feedback"])
-
-        writer.writerow([question, corrected, answer, feedback])
 st.set_page_config(page_title="Student Helper", page_icon="🎓")
 
 def get_data():
