@@ -120,6 +120,3 @@ def get_best_answer(user_question, data, answer_type="short", subject="science")
         return f"I couldn't find exact match, but here's closest answer:\n\n{best_answer}", best_question
 
     return best_answer, best_question
-with open("user_logs.csv", "a", newline='', encoding="utf-8") as f:
-    writer = csv.writer(f)
-    writer.writerow([question, corrected_question, answer])
