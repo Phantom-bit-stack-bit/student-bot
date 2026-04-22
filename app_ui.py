@@ -73,21 +73,22 @@ with st.form("qa_form"):
         "✍️ Enter your question here",
         placeholder="e.g. What is gravity?"
     )
-    submitted = st.form_submit_button("Get Answer 🚀")
 if submitted:
     if len(question.strip()) < 3:
         st.warning("⚠️ Please enter a proper question")
-    elif len(question.split()) < 2 and len(question) < 5:
-        st.warning("⚠️ Try a more detailed question")
-    elif (question.strip().lower(), selected_type, selected_subject) == st.session_state.last_q:
-        st.info("You already asked this 😊")
 
     else:
-        st.session_state.last_q = (question.strip().lower(), selected_type, selected_subject)
+        # 🔥 STEP 1: auto-correct input
+        corrected_question = auto_correct(question, vocab)
 
-        with st.spinner("🔍 Finding best answer..."):
+        # 🔥 OPTIONAL: show correction
+        if corrected_question != question.lower():
+            st.info(f"Did you mean: {corrected_question}?")
+
+        # 🔥 STEP 2: pass corrected question
+        with st.spinner("Thinking... 🤔"):
             answer, matched_q = get_best_answer(
-                question, data, selected_type, selected_subject
+                corrected_question, data, selected_type, selected_subject
             )
 
         st.markdown("### 🤖 Answer")
