@@ -79,6 +79,5 @@ if submitted:
         st.markdown("### 🤖 Answer")
         st.success(answer)
         st.caption(f"Matched with: {matched_q}")
-        st.markdown("### 🤖 Answer")
 st.markdown("---")
 st.caption("Built by Arpit 🚀")
