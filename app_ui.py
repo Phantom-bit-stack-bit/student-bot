@@ -126,3 +126,7 @@ with col2:
         print("Not helpful:", question)
 st.markdown("---")
 st.caption("🚀Build by Arpit.")
+print("User:", question)
+print("Corrected:", corrected_question)
+print("Answer:", answer)
+print("------")
