@@ -41,17 +41,17 @@ def similarity(q1, q2):
     words1 = text_to_words(q1)
     words2 = text_to_words(q2)
 
-    if not words1:
-        return 0
-
     common = words1.intersection(words2)
 
-    # improve scoring
-    score = len(common) / (len(words1) + 1)
+    score = len(common)
 
-    # bonus if exact phrase exists
+    # boost exact keyword match
+    if any(word in q2.lower() for word in words1):
+        score += 1
+
+    # boost full phrase match
     if q1.lower() in q2.lower():
-        score += 0.5
+        score += 2
 
     return score
 def get_best_answer(user_question, data, answer_type="short", subject="science"):
