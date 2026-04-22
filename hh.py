@@ -57,13 +57,12 @@ def similarity(q1, q2):
 def get_best_answer(user_question, data, answer_type="short", subject="science"):
     best_score = 0
     best_answer = "I’m not sure 🤔 Try asking in a different way."
+    best_question = ""
 
     for item in data:
-        # Filter by subject
-        if "subject" in item and item["subject"] != subject:
+        if "subject" in item and item["subject"].strip().lower() != subject:
             continue
 
-        # Filter by type
         if "type" in item and item["type"] != answer_type:
             continue
 
@@ -72,8 +71,9 @@ def get_best_answer(user_question, data, answer_type="short", subject="science")
         if score > best_score:
             best_score = score
             best_answer = item["answer"]
+            best_question = item["question"]
 
     if best_score < 0.05:
-        return "I couldn’t find an exact answer 😅 Try rephrasing or selecting another type."
+        return best_answer, best_question
 
-    return best_answer
+    return best_answer, best_question
