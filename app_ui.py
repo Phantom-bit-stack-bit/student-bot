@@ -123,17 +123,16 @@ if submitted:
 
         st.markdown("### 🤖 Answer")
         st.success(answer)
-        print("SAVING LOG...")
-        save_log(question, corrected_question, answer)
-        st.session_state.last_interaction = {
-            "question": question,
-            "corrected": corrected_question,
-            "answer": answer
-        }
         st.caption(f"Matched with: {matched_q}")
 
         print("User asked:", question)
 st.write("DEBUG:", selected_subject)
+def save_log(question, corrected, answer, feedback=""):
+    print("Saving:", question, feedback)
+
+    with open("user_logs.csv", "a", newline='', encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow([question, corrected, answer, feedback])
 col1, col2 = st.columns(2)
 
 if "last_interaction" in st.session_state:
