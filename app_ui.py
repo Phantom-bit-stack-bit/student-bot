@@ -79,6 +79,7 @@ if submitted:
 
     elif question == st.session_state.last_q:
         st.info("You already asked this 😊")
+    elif question.strip().lower() == st.session_state.last_q.lower():
 
     else:
         st.session_state.last_q = question
