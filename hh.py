@@ -10,6 +10,8 @@ def load_data():
     return data
 
 def normalize(word):
+    if word.startwith("Hello"):
+        print("Hi, How can I help you.")
     if word.startswith("gravit"):
         return "gravity"
     if word.startswith("weigh"):
