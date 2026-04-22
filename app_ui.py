@@ -74,8 +74,8 @@ with st.form("qa_form"):
     submitted = st.form_submit_button("Get Answer 🚀")
 
 if submitted:
-    if len(question.strip()) < 3:
-        st.warning("⚠️ Please enter a proper question")
+    if len(question.strip().split()) < 2:
+        st.warning("⚠️ Try asking a full question (e.g. 'What is gravity?')")
     elif (question.strip().lower(), selected_type, selected_subject) == st.session_state.last_q:
         st.info("You already asked this 😊")
 
