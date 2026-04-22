@@ -93,14 +93,5 @@ if submitted:
 
         print("User asked:", question)
         print("No match:", question)
-col1, col2 = st.columns(2)
-
-with col1:
-    if st.button("👍 Helpful"):
-        print("Helpful:", question)
-
-with col2:
-    if st.button("👎 Not helpful"):
-        print("Not helpful:", question)
 st.markdown("---")
 st.caption("Built by Arpit 🚀")
