@@ -64,10 +64,6 @@ if answer_type == "Short":
 else:
     selected_type = "long"
 # Session state
-# Build vocab once (after loading data)
-vocab = build_vocab(data)
-
-# Session state
 if "last_q" not in st.session_state:
     st.session_state.last_q = ""
 
@@ -78,6 +74,7 @@ with st.form("qa_form"):
         placeholder="e.g. What is gravity?"
     )
     submitted = st.form_submit_button("Get Answer 🚀")
+    st.write("DEBUG:", selected_subject)
 
 # LOGIC (OUTSIDE form)
 if submitted:
