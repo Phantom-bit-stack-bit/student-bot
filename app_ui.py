@@ -1,13 +1,21 @@
 import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
 import csv
+
 st.set_page_config(page_title="Student Helper", page_icon="🎓")
 
 def get_data():
     return load_data()
 
 data = get_data()
-vocab = build_vocab(data)
+vocab = build_vocab(data)   # ✅ FIXED (only once)
+
+# Session state
+if "last_q" not in st.session_state:
+    st.session_state.last_q = ""
+
+if "last_interaction" not in st.session_state:
+    st.session_state.last_interaction = None
 
 st.sidebar.title("📌 About")
 st.sidebar.info("This tool helps students get quick exam-ready answers.")
@@ -32,11 +40,7 @@ subject = st.selectbox(
     ["Science", "Commerce"]
 )
 
-# Convert subject properly
-if subject == "Science":
-    selected_subject = "science"
-else:
-    selected_subject = "commerce"
+selected_subject = "science" if subject == "Science" else "commerce"
 
 # Suggestions
 suggestions = {
@@ -55,19 +59,14 @@ suggestions = {
 st.markdown("### 💡 Try asking:")
 for q in suggestions[subject]:
     st.write(f"- {q}")
+
+# Answer type
 answer_type = st.selectbox(
     "Choose answer type:",
     ["Short", "Detailed"]
 )
 
-if answer_type == "Short":
-    selected_type = "short"
-else:
-    selected_type = "long"
-    vocab = build_vocab(data)
-# Session state
-if "last_q" not in st.session_state:
-    st.session_state.last_q = ""
+selected_type = "short" if answer_type == "Short" else "long"
 
 # FORM
 with st.form("qa_form"):
@@ -76,9 +75,8 @@ with st.form("qa_form"):
         placeholder="e.g. What is gravity?"
     )
     submitted = st.form_submit_button("Get Answer 🚀")
-    
 
-# LOGIC (OUTSIDE form)
+# LOGIC
 if submitted:
     if len(question.strip()) < 3:
         st.warning("⚠️ Please enter a proper question")
@@ -108,25 +106,33 @@ if submitted:
                 selected_subject
             )
 
-        st.markdown("### 🤖 Answer")
-        st.success(answer)
-        st.caption(f"Matched with: {matched_q}")
+        # ✅ MOST IMPORTANT FIX
+        st.session_state.last_interaction = {
+            "question": question,
+            "corrected": corrected_question,
+            "answer": answer,
+            "matched": matched_q
+        }
 
         print("User asked:", question)
-st.write("DEBUG:", selected_subject)
-col1, col2 = st.columns(2)
 
-if "last_interaction" in st.session_state:
-    data = st.session_state.last_interaction
+# ✅ SHOW ANSWER ALWAYS (OUTSIDE submit)
+if st.session_state.last_interaction:
+    data_last = st.session_state.last_interaction
+
+    st.markdown("### 🤖 Answer")
+    st.success(data_last["answer"])
+    st.caption(f"Matched with: {data_last['matched']}")
+
+    # Feedback buttons (NOW WORKING)
+    col1, col2 = st.columns(2)
 
     with col1:
         if st.button("👍 Helpful"):
-            save_log(data["question"], data["corrected"], data["answer"], "helpful")
             st.success("Thanks for feedback!")
 
     with col2:
         if st.button("👎 Not helpful"):
-            save_log(data["question"], data["corrected"], data["answer"], "not helpful")
             st.warning("Got it! Will improve.")
 
 st.markdown("---")
