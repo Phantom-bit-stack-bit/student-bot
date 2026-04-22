@@ -66,17 +66,25 @@ else:
 # Input box
 # Input box
 question = st.text_input("✍️ Enter your question here")
+if "last_q" not in st.session_state:
+    st.session_state.last_q = ""
 
 # Trigger: Enter OR Button
 trigger = st.button("Get Answer 🚀") or question
 
 if trigger:
-    if len(question.strip()) < 3:
-        st.warning("⚠️ Please enter a proper question (e.g. 'What is gravity?')")
+    if question == st.session_state.last_q:
+        st.info("You already asked this 😊")
+    elif len(question.strip()) < 3:
+        st.warning("⚠️ Please enter a proper question")
     else:
-        with st.spinner("🔍 Searching your answer..."):
-            answer = get_best_answer(question, data, selected_type, selected_subject)
+        st.session_state.last_q = question
 
+        with st.spinner("Thinking... 🤔"):
+            answer, matched_q = get_best_answer(question, data, selected_type, selected_subject)
+
+        st.success(answer)
+        st.caption(f"Matched with: {matched_q}")
         st.markdown("### 🤖 Answer")
         st.success(answer)
 st.markdown("---")
