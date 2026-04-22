@@ -47,7 +47,7 @@ def normalize(word):
     return synonyms.get(word, word)
 def text_to_words(text):
     stopwords = {"what", "is", "the", "a", "an", "explain", "define", "tell", "me"}
-    
+    filtered = [normalize(word) for word in words if word not in stopwords]
     text = text.lower()
     text = text.translate(str.maketrans('', '', string.punctuation))
     
