@@ -66,9 +66,10 @@ def similarity(q1, q2):
     # 🔥 NEW: fuzzy matching for typos
     for w1 in words1:
         for w2 in words2:
-            ratio = difflib.SequenceMatcher(None, w1, w2).ratio()
-            if ratio > 0.8:   # similar words
-                score += 0.5
+            if len(w1) > 3 and len(w2) > 3:
+                ratio = difflib.SequenceMatcher(None, w1, w2).ratio()
+                if ratio > 0.8:   # similar words
+                    score += 0.5
 
     # existing boosts
     if any(word in q2.lower() for word in words1):
