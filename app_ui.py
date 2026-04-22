@@ -4,9 +4,9 @@ st.set_page_config(page_title="Student Helper", page_icon="🎓")
 
 def get_data():
     return load_data()
-    vocab = build_vocab(data)
 
 data = get_data()
+vocab = build_vocab(data)
 
 st.sidebar.title("📌 About")
 st.sidebar.info("This tool helps students get quick exam-ready answers.")
@@ -75,7 +75,7 @@ with st.form("qa_form"):
         placeholder="e.g. What is gravity?"
     )
     submitted = st.form_submit_button("Get Answer 🚀")
-    st.write("DEBUG:", selected_subject)
+    
 
 # LOGIC (OUTSIDE form)
 if submitted:
@@ -112,6 +112,7 @@ if submitted:
         st.caption(f"Matched with: {matched_q}")
 
         print("User asked:", question)
+st.write("DEBUG:", selected_subject)
 col1, col2 = st.columns(2)
 
 with col1:
