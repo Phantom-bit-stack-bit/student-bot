@@ -63,6 +63,7 @@ if answer_type == "Short":
     selected_type = "short"
 else:
     selected_type = "long"
+    vocab = build_vocab(data)
 # Session state
 if "last_q" not in st.session_state:
     st.session_state.last_q = ""
