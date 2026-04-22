@@ -1,6 +1,9 @@
 import csv
 import string
 import difflib
+def correct_word(word, vocab):
+    matches = difflib.get_close_matches(word, vocab, n=1, cutoff=0.8)
+    return matches[0] if matches else word
 def load_data():
     data = []
     with open("q.csv", newline='', encoding='utf-8') as file:
@@ -55,7 +58,15 @@ def text_to_words(text):
     filtered = [normalize(word) for word in words if word not in stopwords]
     
     return set(filtered)
+def build_vocab(data):
+    vocab = set()
 
+    for item in data:
+        words = item["question"].lower().split()
+        for w in words:
+            vocab.add(w)
+
+    return vocab
 def similarity(q1, q2):
     words1 = text_to_words(q1)
     words2 = text_to_words(q2)
