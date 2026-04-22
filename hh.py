@@ -18,6 +18,12 @@ def normalize(word):
         return "density"
     if word.startswith("mass"):
         return "mass"
+    if word.startswith("grav"):
+        return "gravity"
+    if word.startswith("ener"):
+        return "energy"
+    if word.startswith("velo"):
+        return "velocity"
     return word
 
 def text_to_words(text):
@@ -67,7 +73,7 @@ def get_best_answer(user_question, data, answer_type="short", subject="science")
             best_score = score
             best_answer = item["answer"]
 
-    if best_score < 0.1:
+    if best_score < 0.05:
         return "I couldn’t find an exact answer 😅 Try rephrasing or selecting another type."
 
     return best_answer
