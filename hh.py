@@ -56,7 +56,7 @@ def similarity(q1, q2):
     return score
 def get_best_answer(user_question, data, answer_type="short", subject="science"):
     best_score = 0
-    best_answer = "I’m not sure 🤔 Try asking in a different way."
+    return f"I couldn't find exact match, but here's closest answer:\n\n{best_answer}"
     best_question = ""
 
     for item in data:
