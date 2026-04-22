@@ -77,11 +77,11 @@ if submitted:
     if len(question.strip()) < 3:
         st.warning("⚠️ Please enter a proper question")
 
-    elif question == st.session_state.last_q:
+   elif (question.strip().lower(), selected_type, selected_subject) == st.session_state.last_q:
         st.info("You already asked this 😊")
 
     else:
-        st.session_state.last_q = question
+        st.session_state.last_q = (question.strip().lower(), selected_type, selected_subject)
 
         with st.spinner("Thinking... 🤔"):
             answer, matched_q = get_best_answer(
