@@ -5,6 +5,7 @@ st.set_page_config(page_title="Student Helper", page_icon="🎓")
 
 def get_data():
     return load_data()
+    vocab = build_vocab(data)
 
 data = get_data()
 
@@ -63,8 +64,6 @@ if answer_type == "Short":
     selected_type = "short"
 else:
     selected_type = "long"
-# Input box
-# Input box
 # Session state
 if "last_q" not in st.session_state:
     st.session_state.last_q = ""
@@ -96,7 +95,6 @@ if submitted:
         st.caption(f"Matched with: {matched_q}")
 
         print("User asked:", question)
-        print("No match:", question)
 col1, col2 = st.columns(2)
 
 with col1:
