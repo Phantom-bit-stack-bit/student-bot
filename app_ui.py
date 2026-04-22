@@ -127,12 +127,6 @@ if submitted:
 
         print("User asked:", question)
 st.write("DEBUG:", selected_subject)
-def save_log(question, corrected, answer, feedback=""):
-    print("Saving:", question, feedback)
-
-    with open("user_logs.csv", "a", newline='', encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow([question, corrected, answer, feedback])
 col1, col2 = st.columns(2)
 
 if "last_interaction" in st.session_state:
