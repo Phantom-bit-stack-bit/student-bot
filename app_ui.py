@@ -107,4 +107,4 @@ with col2:
     if st.button("👎 Not helpful"):
         print("Not helpful:", question)
 st.markdown("---")
-st.caption("We can also Make mistakes.")
+st.caption("🚀Build by Arpit.")
