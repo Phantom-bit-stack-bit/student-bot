@@ -73,11 +73,9 @@ def get_best_answer(user_question, data, answer_type="short", subject="science")
             best_answer = item["answer"]
             best_question = item["question"]
 
-    # 🔥 FIX: check if best_answer exists
     if best_answer is None:
         return "I couldn’t find any relevant answer 😅", ""
 
-    # fallback message
     if best_score < 0.1:
         return f"I couldn't find exact match, but here's closest answer:\n\n{best_answer}", best_question
 
