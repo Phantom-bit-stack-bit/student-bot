@@ -11,6 +11,8 @@ data = get_data()
 vocab = build_vocab(data)   # ✅ FIXED (only once)
 
 # Session state
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 if "last_q" not in st.session_state:
     st.session_state.last_q = ""
 
@@ -85,11 +87,12 @@ if submitted:
         st.info("You already asked this 😊")
 
     else:
-        st.session_state.last_q = (
-            question.strip().lower(),
-            selected_type,
-            selected_subject
-        )
+        st.session_state.chat_history.append({
+            "question": question,
+            "corrected": corrected_question,
+            "answer": answer,
+            "matched": matched_q
+        })
 
         # 🔥 Auto-correct
         corrected_question = auto_correct(question, vocab)
@@ -117,14 +120,18 @@ if submitted:
         print("User asked:", question)
 
 # ✅ SHOW ANSWER ALWAYS (OUTSIDE submit)
-if st.session_state.last_interaction:
-    data_last = st.session_state.last_interaction
+if st.session_state.chat_history:
+    for chat in reversed(st.session_state.chat_history):
 
-    st.markdown("### 🤖 Answer")
-    st.success(data_last["answer"])
-    st.caption(f"Matched with: {data_last['matched']}")
+        st.markdown("### 🧑 Question")
+        st.write(chat["question"])
 
-    # Feedback buttons (NOW WORKING)
+        st.markdown("### 🤖 Answer")
+        st.success(chat["answer"])
+        st.caption(f"Matched with: {chat['matched']}")
+
+        st.markdown("---")
+    # Feedback buttons
     col1, col2 = st.columns(2)
 
     with col1:
@@ -134,6 +141,7 @@ if st.session_state.last_interaction:
     with col2:
         if st.button("👎 Not helpful"):
             st.warning("Got it! Will improve.")
-
+if chat["corrected"] != chat["question"].lower():
+    st.caption(f"Processed as: {chat['corrected']}")
 st.markdown("---")
 st.caption("🚀Build by Arpit.")
