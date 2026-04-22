@@ -2,7 +2,15 @@ import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
 import csv
 import os
+import pandas as pd
 
+if os.path.exists("user_logs.csv"):
+    df = pd.read_csv("user_logs.csv")
+    st.download_button(
+        "Download Logs",
+        df.to_csv(index=False),
+        file_name="logs.csv"
+    )
 def save_log(question, corrected, answer, feedback=""):
     file_exists = os.path.exists("user_logs.csv")
 
