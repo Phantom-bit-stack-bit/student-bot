@@ -69,8 +69,7 @@ else:
 if "last_q" not in st.session_state:
     st.session_state.last_q = ""
 
-with st.form("qa_form"):
-    question = st.text_input("✍️ Enter your question here")
+with st.form("qa_form"):st.text_input("✍️ Enter your question here", placeholder="e.g. What is gravity?")
     submitted = st.form_submit_button("Get Answer 🚀")
 
 if submitted:
@@ -84,7 +83,7 @@ if submitted:
     else:
         st.session_state.last_q = (question.strip().lower(), selected_type, selected_subject)
 
-        with st.spinner("Thinking... 🤔"):
+        with st.spinner("🔍 Finding best answer..."):
             answer, matched_q = get_best_answer(
                 question, data, selected_type, selected_subject
             )
