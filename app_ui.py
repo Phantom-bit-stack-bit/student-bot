@@ -123,6 +123,7 @@ if submitted:
 
         st.markdown("### 🤖 Answer")
         st.success(answer)
+        print("SAVING LOG...")
         save_log(question, corrected_question, answer)
         st.session_state.last_interaction = {
             "question": question,
