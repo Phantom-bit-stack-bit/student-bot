@@ -1,7 +1,28 @@
 import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
 import csv
+import os
+import pandas as pd
 
+if os.path.exists("user_logs.csv"):
+    try:
+        df = pd.read_csv("user_logs.csv")
+
+        if not df.empty:
+            st.download_button(
+                "📥 Download Logs",
+                df.to_csv(index=False),
+                file_name="logs.csv",
+                mime="text/csv"
+            )
+        else:
+            st.info("No data yet to download")
+
+    except Exception as e:
+        st.error(f"Error reading logs: {e}")
+
+else:
+    st.info("No logs file created yet")
 st.set_page_config(page_title="Student Helper", page_icon="🎓")
 
 def get_data():
