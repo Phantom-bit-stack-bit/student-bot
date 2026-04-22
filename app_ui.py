@@ -92,6 +92,7 @@ if submitted:
         st.caption(f"Matched with: {matched_q}")
 
         print("User asked:", question)
+        print("No match:", question)
 col1, col2 = st.columns(2)
 
 with col1:
