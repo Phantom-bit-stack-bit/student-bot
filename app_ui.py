@@ -81,59 +81,32 @@ with st.form("qa_form"):
 
 # LOGIC
 if submitted:
-    if len(question.strip()) < 3:
-        st.warning("⚠️ Please enter a proper question")
+    corrected_question = auto_correct(question, vocab)
 
-    else:
-        corrected_question = auto_correct(question, vocab)  # ✅ FIRST
+    # 🔍 duplicate check
+    is_duplicate = False
+    for chat in st.session_state.chat_history:
+        if chat["corrected"] == corrected_question:
+            is_duplicate = True
+            break
 
-        answer, matched_q = get_best_answer(
-            corrected_question,
-            data,
-            selected_type,
-            selected_subject
-        )
+    if not is_duplicate:
+        with st.spinner("Thinking... 🤔"):
+            answer, matched_q = get_best_answer(
+                corrected_question,
+                data,
+                selected_type,
+                selected_subject
+            )
 
-        # ✅ THEN store
         st.session_state.chat_history.append({
             "question": question,
             "corrected": corrected_question,
             "answer": answer,
             "matched": matched_q
         })
-        # 🔥 Auto-correct
-        corrected_question = auto_correct(question, vocab)
-
-        if corrected_question != question.lower():
-            st.info(f"Did you mean: {corrected_question}?")
-            with st.spinner("Thinking... 🤔"):
-                answer, matched_q = get_best_answer(
-                corrected_question,
-                data,
-                selected_type,
-                selected_subject
-                )
-
-# ✅ OUTSIDE spinner
-# 🔍 Check duplicate
-is_duplicate = False
-
-for chat in st.session_state.chat_history:
-    if chat["corrected"] == corrected_question:
-        is_duplicate = True
-        break
-
-# ✅ AFTER loop (IMPORTANT)
-if not is_duplicate:
-    st.session_state.chat_history.append({
-        "question": question,
-        "corrected": corrected_question,
-        "answer": answer,
-        "matched": matched_q
-    })
-else:
-    st.info("Already asked (same meaning) 😊")
-
+    else:
+        st.info("Already asked (same meaning) 😊")
 print("User asked:", question)
        
 
