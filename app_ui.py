@@ -1,7 +1,8 @@
 import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
 import csv
-
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 st.set_page_config(page_title="Student Helper", page_icon="🎓")
 
 def get_data():
@@ -107,13 +108,30 @@ if submitted:
             st.info(f"Did you mean: {corrected_question}?")
 
         # 🔥 Get answer
-        with st.spinner("Thinking... 🤔"):
-            answer, matched_q = get_best_answer(
-                corrected_question,
-                data,
-                selected_type,
-                selected_subject
-            )
+       with st.spinner("Thinking... 🤔"):
+           answer, matched_q = get_best_answer(
+           corrected_question,
+           data,
+           selected_type,
+           selected_subject
+           )
+
+# ✅ OUTSIDE spinner
+is_duplicate = False
+
+for chat in st.session_state.chat_history:
+    if chat["corrected"] == corrected_question:
+        is_duplicate = True
+        break
+    if not is_duplicate:
+    st.session_state.chat_history.append({
+        "question": question,
+        "corrected": corrected_question,
+        "answer": answer,
+        "matched": matched_q
+    })
+else:
+    st.info("Already asked (same meaning) 😊")
 
         # ✅ MOST IMPORTANT FIX
         st.session_state.last_interaction = {
