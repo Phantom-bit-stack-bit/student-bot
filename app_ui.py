@@ -115,13 +115,16 @@ if submitted:
                 )
 
 # ✅ OUTSIDE spinner
+# 🔍 Check duplicate
 is_duplicate = False
 
 for chat in st.session_state.chat_history:
     if chat["corrected"] == corrected_question:
         is_duplicate = True
         break
-    if not is_duplicate:
+
+# ✅ AFTER loop (IMPORTANT)
+if not is_duplicate:
     st.session_state.chat_history.append({
         "question": question,
         "corrected": corrected_question,
@@ -129,15 +132,8 @@ for chat in st.session_state.chat_history:
         "matched": matched_q
     })
 else:
-    st.info("Already asked (same meaning) 😊"))
+    st.info("Already asked (same meaning) 😊")
 
-        # ✅ MOST IMPORTANT FIX
-st.session_state.last_interaction = {
-    "question": question,
-    "corrected": corrected_question,
-    "answer": answer,
-    "matched": matched_q
-}
 print("User asked:", question)
        
 
@@ -153,7 +149,8 @@ if st.session_state.chat_history:
         st.caption(f"Matched with: {chat['matched']}")
 
         st.markdown("---")
-    # Feedback buttons
+
+    # Feedback buttons (global for now)
     col1, col2 = st.columns(2)
 
     with col1:
