@@ -132,14 +132,14 @@ else:
     st.info("Already asked (same meaning) 😊"))
 
         # ✅ MOST IMPORTANT FIX
-        st.session_state.last_interaction = {
-            "question": question,
-            "corrected": corrected_question,
-            "answer": answer,
-            "matched": matched_q
-        }
-
-        print("User asked:", question)
+st.session_state.last_interaction = {
+    "question": question,
+    "corrected": corrected_question,
+    "answer": answer,
+    "matched": matched_q
+}
+print("User asked:", question)
+       
 
 # ✅ SHOW ANSWER ALWAYS (OUTSIDE submit)
 if st.session_state.chat_history:
