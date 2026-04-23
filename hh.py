@@ -100,7 +100,6 @@ def get_best_answer(user_question, data, answer_type="short", subject="science")
     best_question = ""
 
     for item in data:
-        # ✅ Subject filter
         if "subject" in item and item["subject"].strip().lower() != subject:
             continue
 
@@ -111,17 +110,19 @@ def get_best_answer(user_question, data, answer_type="short", subject="science")
             best_item = item
             best_question = item["question"]
 
-    # ❌ No match
     if best_item is None:
         return "I couldn’t find any relevant answer 😅", ""
 
-    # ✅ Pick answer type
-    if answer_type == "short":
-        best_answer = best_item.get("short", "No short answer available")
+    # ✅ SAFE HANDLING (important)
+    if "short" in best_item and "long" in best_item:
+        if answer_type == "short":
+            best_answer = best_item["short"]
+        else:
+            best_answer = best_item["long"]
     else:
-        best_answer = best_item.get("long", "No detailed answer available")
+        # fallback to old format
+        best_answer = best_item.get("answer", "No answer available")
 
-    # ⚠️ Weak match fallback
     if best_score < 0.1:
         return f"I couldn't find exact match, but here's closest answer:\n\n{best_answer}", best_question
 
