@@ -1,46 +1,32 @@
 import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
-import csv
 
-st.set_page_config(page_title="Student Helper", page_icon="🎓")
+st.set_page_config(page_title="Student Helper V3", page_icon="🎓")
 
-def get_data():
-    return load_data()
-
-data = get_data()
+# ================== LOAD ==================
+data = load_data()
 vocab = build_vocab(data)
 
-# Session state
+# ================== SESSION ==================
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-if "last_q" not in st.session_state:
-    st.session_state.last_q = ""
-
+# ================== SIDEBAR ==================
 st.sidebar.title("📌 About")
-st.sidebar.info("This tool helps students get quick exam-ready answers.")
+st.sidebar.info("Exam helper with AI-like chat experience.")
 
-st.markdown("""
-<style>
-body {
-    background-color: #0e1117;
-}
-.stTextInput>div>div>input {
-    background-color: #262730;
-    color: white;
-}
-</style>
-""", unsafe_allow_html=True)
+if st.sidebar.button("🧹 Clear Chat"):
+    st.session_state.chat_history = []
+    st.rerun()
 
-st.title("⚡ Quick Exam Helper")
+# ================== UI ==================
+st.title("🎓 Student Helper V3")
 
-# Subject selector
-subject = st.selectbox(
-    "Select Subject:",
-    ["Science", "Commerce"]
-)
-
+subject = st.selectbox("📚 Subject", ["Science", "Commerce"])
 selected_subject = "science" if subject == "Science" else "commerce"
+
+answer_type = st.selectbox("🧠 Answer Type", ["Short", "Detailed"])
+selected_type = "short" if answer_type == "Short" else "long"
 
 # Suggestions
 suggestions = {
@@ -58,33 +44,29 @@ suggestions = {
 
 st.markdown("### 💡 Try asking:")
 for q in suggestions[subject]:
-    st.write(f"- {q}")
+    if st.button(q):
+        st.session_state["prefill"] = q
 
-# Answer type
-answer_type = st.selectbox(
-    "Choose answer type:",
-    ["Short", "Detailed"]
+# ================== INPUT ==================
+question = st.text_input(
+    "✍️ Ask your question",
+    value=st.session_state.get("prefill", "")
 )
 
-selected_type = "short" if answer_type == "Short" else "long"
+submit = st.button("🚀 Get Answer")
 
-# FORM
-with st.form("qa_form"):
-    question = st.text_input(
-        "✍️ Enter your question here",
-        placeholder="e.g. What is gravity?"
-    )
-    submitted = st.form_submit_button("Get Answer 🚀")
-
-# LOGIC
-if submitted:
+# ================== LOGIC ==================
+if submit:
     if len(question.strip()) < 3:
         st.warning("⚠️ Please enter a proper question")
-
     else:
         corrected_question = auto_correct(question, vocab)
 
-        # 🔍 duplicate check
+        # 🔥 Did you mean
+        if corrected_question != question.lower():
+            st.info(f"Did you mean: {corrected_question}?")
+
+        # 🔍 Duplicate check
         is_duplicate = False
         for chat in st.session_state.chat_history:
             if chat["corrected"] == corrected_question:
@@ -104,37 +86,31 @@ if submitted:
                 "question": question,
                 "corrected": corrected_question,
                 "answer": answer,
-                "matched": matched_q
+                "matched": matched_q,
+                "type": selected_type
             })
-
-            print("User asked:", question)  # ✅ moved inside
-
         else:
             st.info("Already asked (same meaning) 😊")
 
-# ✅ SHOW ANSWER ALWAYS (OUTSIDE submit)
+# ================== CHAT DISPLAY ==================
 if st.session_state.chat_history:
     for chat in reversed(st.session_state.chat_history):
 
-        st.markdown("### 🧑 Question")
-        st.write(chat["question"])
+        with st.container():
+            st.markdown("#### 🧑 You")
+            st.write(chat["question"])
 
-        st.markdown("### 🤖 Answer")
-        st.success(chat["answer"])
-        st.caption(f"Matched with: {chat['matched']}")
+            st.markdown("#### 🤖 Bot")
+            st.success(chat["answer"])
 
-        st.markdown("---")
+            # Extra info
+            st.caption(f"Matched with: {chat['matched']} | Type: {chat['type']}")
 
-    # Feedback buttons
-    col1, col2 = st.columns(2)
+            if chat["corrected"] != chat["question"].lower():
+                st.caption(f"Interpreted as: {chat['corrected']}")
 
-    with col1:
-        if st.button("👍 Helpful"):
-            st.success("Thanks for feedback!")
+            st.markdown("---")
 
-    with col2:
-        if st.button("👎 Not helpful"):
-            st.warning("Got it! Will improve.")
-
+# ================== FOOTER ==================
 st.markdown("---")
-st.caption("🚀Build by Arpit.")
+st.caption("🚀 Built by Arpit | V3")
