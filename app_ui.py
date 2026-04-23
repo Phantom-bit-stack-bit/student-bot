@@ -129,7 +129,7 @@ for chat in st.session_state.chat_history:
         "matched": matched_q
     })
 else:
-    st.info("Already asked (same meaning) 😊")
+    st.info("Already asked (same meaning) 😊"))
 
         # ✅ MOST IMPORTANT FIX
         st.session_state.last_interaction = {
