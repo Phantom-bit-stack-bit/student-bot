@@ -1,24 +1,21 @@
 import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
 import csv
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
+
 st.set_page_config(page_title="Student Helper", page_icon="🎓")
 
 def get_data():
     return load_data()
 
 data = get_data()
-vocab = build_vocab(data)   # ✅ FIXED (only once)
+vocab = build_vocab(data)
 
 # Session state
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
+
 if "last_q" not in st.session_state:
     st.session_state.last_q = ""
-
-if "last_interaction" not in st.session_state:
-    st.session_state.last_interaction = None
 
 st.sidebar.title("📌 About")
 st.sidebar.info("This tool helps students get quick exam-ready answers.")
@@ -81,34 +78,39 @@ with st.form("qa_form"):
 
 # LOGIC
 if submitted:
-    corrected_question = auto_correct(question, vocab)
+    if len(question.strip()) < 3:
+        st.warning("⚠️ Please enter a proper question")
 
-    # 🔍 duplicate check
-    is_duplicate = False
-    for chat in st.session_state.chat_history:
-        if chat["corrected"] == corrected_question:
-            is_duplicate = True
-            break
-
-    if not is_duplicate:
-        with st.spinner("Thinking... 🤔"):
-            answer, matched_q = get_best_answer(
-                corrected_question,
-                data,
-                selected_type,
-                selected_subject
-            )
-
-        st.session_state.chat_history.append({
-            "question": question,
-            "corrected": corrected_question,
-            "answer": answer,
-            "matched": matched_q
-        })
     else:
-        st.info("Already asked (same meaning) 😊")
-print("User asked:", question)
-       
+        corrected_question = auto_correct(question, vocab)
+
+        # 🔍 duplicate check
+        is_duplicate = False
+        for chat in st.session_state.chat_history:
+            if chat["corrected"] == corrected_question:
+                is_duplicate = True
+                break
+
+        if not is_duplicate:
+            with st.spinner("Thinking... 🤔"):
+                answer, matched_q = get_best_answer(
+                    corrected_question,
+                    data,
+                    selected_type,
+                    selected_subject
+                )
+
+            st.session_state.chat_history.append({
+                "question": question,
+                "corrected": corrected_question,
+                "answer": answer,
+                "matched": matched_q
+            })
+
+            print("User asked:", question)  # ✅ moved inside
+
+        else:
+            st.info("Already asked (same meaning) 😊")
 
 # ✅ SHOW ANSWER ALWAYS (OUTSIDE submit)
 if st.session_state.chat_history:
@@ -123,7 +125,7 @@ if st.session_state.chat_history:
 
         st.markdown("---")
 
-    # Feedback buttons (global for now)
+    # Feedback buttons
     col1, col2 = st.columns(2)
 
     with col1:
@@ -133,5 +135,6 @@ if st.session_state.chat_history:
     with col2:
         if st.button("👎 Not helpful"):
             st.warning("Got it! Will improve.")
+
 st.markdown("---")
 st.caption("🚀Build by Arpit.")
