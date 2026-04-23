@@ -96,26 +96,32 @@ def similarity(q1, q2):
     return score
 def get_best_answer(user_question, data, answer_type="short", subject="science"):
     best_score = 0
-    best_answer = None
+    best_item = None
     best_question = ""
 
     for item in data:
+        # ✅ Subject filter
         if "subject" in item and item["subject"].strip().lower() != subject:
-            continue
-
-        if "type" in item and item["type"] != answer_type:
             continue
 
         score = similarity(user_question, item["question"])
 
         if score > best_score:
             best_score = score
-            best_answer = item["answer"]
+            best_item = item
             best_question = item["question"]
 
-    if best_answer is None:
+    # ❌ No match
+    if best_item is None:
         return "I couldn’t find any relevant answer 😅", ""
 
+    # ✅ Pick answer type
+    if answer_type == "short":
+        best_answer = best_item.get("short", "No short answer available")
+    else:
+        best_answer = best_item.get("long", "No detailed answer available")
+
+    # ⚠️ Weak match fallback
     if best_score < 0.1:
         return f"I couldn't find exact match, but here's closest answer:\n\n{best_answer}", best_question
 
