@@ -106,15 +106,13 @@ if submitted:
 
         if corrected_question != question.lower():
             st.info(f"Did you mean: {corrected_question}?")
-
-        # 🔥 Get answer
-       with st.spinner("Thinking... 🤔"):
-           answer, matched_q = get_best_answer(
-           corrected_question,
-           data,
-           selected_type,
-           selected_subject
-           )
+            with st.spinner("Thinking... 🤔"):
+                answer, matched_q = get_best_answer(
+                corrected_question,
+                data,
+                selected_type,
+                selected_subject
+                )
 
 # ✅ OUTSIDE spinner
 is_duplicate = False
