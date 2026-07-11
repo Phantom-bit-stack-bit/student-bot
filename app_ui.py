@@ -60,11 +60,11 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ================== LOAD DATA ==================
+# ================== LOAD ==================
 data = load_data()
 vocab = build_vocab(data)
 
-# ================== SESSION STATE ==================
+# ================== SESSION ==================
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
@@ -82,7 +82,7 @@ st.sidebar.markdown("### 📡 SYSTEM STATUS")
 st.sidebar.success("✅ Quantum Link Stable")
 st.sidebar.progress(0.92)
 
-# ================== MAIN HEADER ==================
+# ================== HEADER ==================
 col1, col2 = st.columns([1, 4])
 with col1:
     st.markdown("# 🌌")
@@ -93,24 +93,119 @@ with col2:
 st.markdown("---")
 
 # ================== CONTROLS ==================
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
     subject = st.selectbox(
         "📡 SELECT KNOWLEDGE DOMAIN",
-        ["Science", "Commerce"],
-        help="Choose your dimensional focus"
+        ["Science", "Commerce"]
     )
 
 with col2:
     answer_type = st.selectbox(
         "🔬 RESPONSE PROTOCOL",
-        ["Short", "Detailed"],
-        help="Neural output density"
+        ["Short", "Detailed"]
     )
 
 selected_subject = "science" if subject == "Science" else "commerce"
 selected_type = "short" if answer_type == "Short" else "long"
 
-# ================== QUANTUM SUGGESTIONS ==================
-st.markdown("### 🔮 QUANTUM
+# ================== SUGGESTIONS ==================
+st.markdown("### 🔮 QUANTUM SUGGESTIONS")
+suggestions = {
+    "Science": [
+        "What is gravity?",
+        "Explain photosynthesis",
+        "Difference between mass and weight"
+    ],
+    "Commerce": [
+        "What is business?",
+        "Explain profit",
+        "Difference between assets and liabilities"
+    ]
+}
+
+cols = st.columns(3)
+for i, q in enumerate(suggestions[subject]):
+    with cols[i]:
+        if st.button(q, key=f"sug_{i}"):
+            st.session_state["prefill"] = q
+
+# ================== QUERY INPUT ==================
+st.markdown("### ✴️ TRANSMIT QUERY")
+question = st.text_input(
+    "Enter your query to the Neural Core:",
+    value=st.session_state.get("prefill", ""),
+    placeholder="e.g., Explain quantum entanglement..."
+)
+
+submit = st.button("🚀 TRANSMIT TO NEXUS", type="primary")
+
+# ================== LOGIC ==================
+if submit:
+    if len(question.strip()) < 3:
+        st.error("⚠️ QUERY TOO FRAGMENTED - Please provide more data")
+    else:
+        corrected_question = auto_correct(question, vocab)
+        
+        if corrected_question != question.lower():
+            st.info(f"🔄 NEURAL INTERPRETATION: **{corrected_question}**")
+        
+        is_duplicate = any(chat["corrected"] == corrected_question 
+                          for chat in st.session_state.chat_history)
+        
+        if not is_duplicate:
+            with st.spinner("🔄 SYNCHRONIZING WITH QUANTUM ARCHIVES..."):
+                answer, matched_q = get_best_answer(
+                    corrected_question, data, selected_type, selected_subject
+                )
+            
+            st.session_state.chat_history.append({
+                "question": question,
+                "corrected": corrected_question,
+                "answer": answer,
+                "matched": matched_q,
+                "type": selected_type
+            })
+        else:
+            st.warning("📡 DUPLICATE QUERY DETECTED IN TEMPORAL CACHE")
+
+# ================== CHAT DISPLAY ==================
+if st.session_state.chat_history:
+    st.markdown("### 📜 TEMPORAL QUERY LOG")
+    for chat in reversed(st.session_state.chat_history):
+        interpreted = f'''
+            <div style="color:#ffff00; font-size:0.85em; margin-top:8px;">
+                🔄 Interpreted: {chat["corrected"]}
+            </div>
+        ''' if chat["corrected"] != chat["question"].lower() else ''
+        
+        st.markdown(f"""
+        <div class="chat-container">
+            <div style="color:#ff00ff; font-weight:bold;">🧬 USER TRANSMISSION:</div>
+            <div style="margin: 10px 0; padding: 12px; background: rgba(0,0,0,0.6); border-radius: 8px;">
+                {chat["question"]}
+            </div>
+            
+            <div style="color:#00ffcc; font-weight:bold;">🤖 NEXUS RESPONSE:</div>
+            <div style="margin: 10px 0; padding: 15px; background: rgba(0, 255, 204, 0.1); border-radius: 8px; border: 1px solid #00ffcc;">
+                {chat["answer"]}
+            </div>
+            
+            <div style="font-size: 0.85em; color: #888; margin-top: 10px;">
+                📍 Matched: <strong>{chat['matched']}</strong> | 
+                ⚙️ Protocol: <strong>{chat['type'].upper()}</strong>
+            </div>
+            {interpreted}
+        </div>
+        """, unsafe_allow_html=True)
+
+# ================== FOOTER ==================
+st.markdown("---")
+st.markdown("""
+<div style="text-align: center; color: #666; font-size: 0.9em;">
+    ⚡️ <strong>NEXUS v3.7</strong> • Quantum Education Division • 
+    <span style="color:#00ffcc">Built by Arpit</span> • 
+    <span style="color:#ff00ff">NEURAL CORE ONLINE</span>
+</div>
+""", unsafe_allow_html=True)
