@@ -16,13 +16,11 @@ st.markdown("""
         background: linear-gradient(180deg, #0a0a1f 0%, #1a0033 100%);
         color: #00ffcc;
     }
-    
     h1, h2, h3 {
         color: #00ffff !important;
         text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
         font-family: 'Courier New', monospace;
     }
-    
     .stButton>button {
         background: linear-gradient(45deg, #00ffcc, #ff00ff);
         color: #000000;
@@ -35,12 +33,10 @@ st.markdown("""
         box-shadow: 0 0 15px #00ffcc, 0 0 30px #ff00ff;
         transition: all 0.3s ease;
     }
-    
     .stButton>button:hover {
         transform: scale(1.05);
         box-shadow: 0 0 25px #00ffcc, 0 0 50px #ff00ff;
     }
-    
     .stTextInput > div > div > input {
         background-color: #1a0033;
         color: #00ffcc;
@@ -48,13 +44,12 @@ st.markdown("""
         border-radius: 10px;
         font-family: 'Courier New', monospace;
     }
-    
     .chat-container {
         border: 1px solid #00ffff;
         border-radius: 15px;
         padding: 20px;
         margin: 15px 0;
-        background: rgba(10, 10, 31, 0.8);
+        background: rgba(10, 10, 31, 0.9);
         box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     }
 </style>
@@ -94,18 +89,10 @@ st.markdown("---")
 
 # ================== CONTROLS ==================
 col1, col2 = st.columns(2)
-
 with col1:
-    subject = st.selectbox(
-        "📡 SELECT KNOWLEDGE DOMAIN",
-        ["Science", "Commerce"]
-    )
-
+    subject = st.selectbox("📡 SELECT KNOWLEDGE DOMAIN", ["Science", "Commerce"])
 with col2:
-    answer_type = st.selectbox(
-        "🔬 RESPONSE PROTOCOL",
-        ["Short", "Detailed"]
-    )
+    answer_type = st.selectbox("🔬 RESPONSE PROTOCOL", ["Short", "Detailed"])
 
 selected_subject = "science" if subject == "Science" else "commerce"
 selected_type = "short" if answer_type == "Short" else "long"
@@ -113,16 +100,8 @@ selected_type = "short" if answer_type == "Short" else "long"
 # ================== SUGGESTIONS ==================
 st.markdown("### 🔮 QUANTUM SUGGESTIONS")
 suggestions = {
-    "Science": [
-        "What is gravity?",
-        "Explain photosynthesis",
-        "Difference between mass and weight"
-    ],
-    "Commerce": [
-        "What is business?",
-        "Explain profit",
-        "Difference between assets and liabilities"
-    ]
+    "Science": ["What is gravity?", "Explain photosynthesis", "Difference between mass and weight"],
+    "Commerce": ["What is business?", "Explain profit", "Difference between assets and liabilities"]
 }
 
 cols = st.columns(3)
@@ -147,20 +126,18 @@ if submit:
         st.error("⚠️ QUERY TOO FRAGMENTED - Please provide more data")
     else:
         corrected_question = auto_correct(question, vocab)
-        
+       
         if corrected_question != question.lower():
             st.info(f"🔄 NEURAL INTERPRETATION: **{corrected_question}**")
-        
-        is_duplicate = any(chat["corrected"] == corrected_question 
-                          for chat in st.session_state.chat_history)
-        
+       
+        is_duplicate = any(chat["corrected"] == corrected_question for chat in st.session_state.chat_history)
+       
         if not is_duplicate:
-            # In the LOGIC section, change the spinner text and maybe force better answers
             with st.spinner("🔄 SYNCHRONIZING WITH QUANTUM ARCHIVES..."):
                 answer, matched_q = get_best_answer(
                     corrected_question, data, selected_type, selected_subject
                 )
-            
+           
             st.session_state.chat_history.append({
                 "question": question,
                 "corrected": corrected_question,
@@ -172,11 +149,10 @@ if submit:
             st.warning("📡 DUPLICATE QUERY DETECTED IN TEMPORAL CACHE")
 
 # ================== CHAT DISPLAY ==================
-# ================== CHAT DISPLAY ==================
 if st.session_state.chat_history:
     st.markdown("### 📜 TEMPORAL QUERY LOG")
-    
     for chat in reversed(st.session_state.chat_history):
+        
         interpreted = ""
         if chat["corrected"] != chat["question"].lower():
             interpreted = f'''
@@ -187,24 +163,25 @@ if st.session_state.chat_history:
         
         st.markdown(f"""
         <div class="chat-container">
-            <div style="color:#ff00ff; font-weight:bold; margin-bottom:8px;">🧬 USER TRANSMISSION:</div>
-            <div style="margin: 10px 0; padding: 12px; background: rgba(0,0,0,0.6); border-radius: 8px; color: #ffffff;">
+            <div style="color:#ff00ff; font-weight:bold; margin-bottom:10px;">🧬 USER TRANSMISSION:</div>
+            <div style="margin-bottom:15px; padding:12px; background:rgba(0,0,0,0.6); border-radius:8px; color:#ffffff;">
                 {chat["question"]}
             </div>
             
-            <div style="color:#00ffcc; font-weight:bold; margin: 12px 0 8px 0;">🤖 NEXUS RESPONSE:</div>
-            <div style="margin: 10px 0; padding: 15px; background: rgba(0, 255, 204, 0.1); 
-                        border-radius: 8px; border: 1px solid #00ffcc; line-height: 1.5;">
+            <div style="color:#00ffcc; font-weight:bold; margin-bottom:8px;">🤖 NEXUS RESPONSE:</div>
+            <div style="margin-bottom:15px; padding:18px; background:rgba(0,255,204,0.1); 
+                        border:1px solid #00ffcc; border-radius:8px; line-height:1.6;">
                 {chat["answer"]}
             </div>
             
-            <div style="font-size: 0.85em; color: #888; margin-top: 12px;">
+            <div style="font-size:0.85em; color:#888;">
                 📍 Matched: <strong>{chat['matched']}</strong> &nbsp;&nbsp;|&nbsp;&nbsp; 
                 ⚙️ Protocol: <strong>{chat['type'].upper()}</strong>
             </div>
             {interpreted}
         </div>
         """, unsafe_allow_html=True)
+
 # ================== FOOTER ==================
 st.markdown("---")
 st.markdown("""
