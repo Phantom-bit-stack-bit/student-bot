@@ -155,6 +155,7 @@ if submit:
                           for chat in st.session_state.chat_history)
         
         if not is_duplicate:
+            # In the LOGIC section, change the spinner text and maybe force better answers
             with st.spinner("🔄 SYNCHRONIZING WITH QUANTUM ARCHIVES..."):
                 answer, matched_q = get_best_answer(
                     corrected_question, data, selected_type, selected_subject
