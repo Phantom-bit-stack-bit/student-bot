@@ -172,35 +172,39 @@ if submit:
             st.warning("📡 DUPLICATE QUERY DETECTED IN TEMPORAL CACHE")
 
 # ================== CHAT DISPLAY ==================
+# ================== CHAT DISPLAY ==================
 if st.session_state.chat_history:
     st.markdown("### 📜 TEMPORAL QUERY LOG")
+    
     for chat in reversed(st.session_state.chat_history):
-        interpreted = f'''
-            <div style="color:#ffff00; font-size:0.85em; margin-top:8px;">
-                🔄 Interpreted: {chat["corrected"]}
-            </div>
-        ''' if chat["corrected"] != chat["question"].lower() else ''
+        interpreted = ""
+        if chat["corrected"] != chat["question"].lower():
+            interpreted = f'''
+                <div style="color:#ffff00; font-size:0.85em; margin-top:8px;">
+                    🔄 Interpreted as: <strong>{chat["corrected"]}</strong>
+                </div>
+            '''
         
         st.markdown(f"""
         <div class="chat-container">
-            <div style="color:#ff00ff; font-weight:bold;">🧬 USER TRANSMISSION:</div>
-            <div style="margin: 10px 0; padding: 12px; background: rgba(0,0,0,0.6); border-radius: 8px;">
+            <div style="color:#ff00ff; font-weight:bold; margin-bottom:8px;">🧬 USER TRANSMISSION:</div>
+            <div style="margin: 10px 0; padding: 12px; background: rgba(0,0,0,0.6); border-radius: 8px; color: #ffffff;">
                 {chat["question"]}
             </div>
             
-            <div style="color:#00ffcc; font-weight:bold;">🤖 NEXUS RESPONSE:</div>
-            <div style="margin: 10px 0; padding: 15px; background: rgba(0, 255, 204, 0.1); border-radius: 8px; border: 1px solid #00ffcc;">
+            <div style="color:#00ffcc; font-weight:bold; margin: 12px 0 8px 0;">🤖 NEXUS RESPONSE:</div>
+            <div style="margin: 10px 0; padding: 15px; background: rgba(0, 255, 204, 0.1); 
+                        border-radius: 8px; border: 1px solid #00ffcc; line-height: 1.5;">
                 {chat["answer"]}
             </div>
             
-            <div style="font-size: 0.85em; color: #888; margin-top: 10px;">
-                📍 Matched: <strong>{chat['matched']}</strong> | 
+            <div style="font-size: 0.85em; color: #888; margin-top: 12px;">
+                📍 Matched: <strong>{chat['matched']}</strong> &nbsp;&nbsp;|&nbsp;&nbsp; 
                 ⚙️ Protocol: <strong>{chat['type'].upper()}</strong>
             </div>
             {interpreted}
         </div>
         """, unsafe_allow_html=True)
-
 # ================== FOOTER ==================
 st.markdown("---")
 st.markdown("""
