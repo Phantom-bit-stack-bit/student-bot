@@ -1,13 +1,25 @@
 import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
+import login  # Import the login file
 
-# ================== CONFIG ==================
+# ================== SESSION STATE ==================
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+# ================== LOGIN CHECK ==================
+if not st.session_state.logged_in:
+    login.login_page()
+    st.stop()  # Stop execution until logged in
+
+# ================== CONFIG & REST OF YOUR APP ==================
 st.set_page_config(
     page_title="NEXUS • Quantum Student AI",
     page_icon="🌌",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# ... (rest of your existing code remains the same from here)
 
 # Custom Sci-Fi CSS
 st.markdown("""
