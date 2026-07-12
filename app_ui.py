@@ -1,17 +1,16 @@
 import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
-import Login  # Import the login file
+from login import login_page   # ← This line must be here
 
-# ================== SESSION STATE ==================
+# Session State
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# ================== LOGIN CHECK ==================
+# Login Check
 if not st.session_state.logged_in:
-    login.login_page()
-    st.stop()  # Stop execution until logged in
+    login_page()
+    st.stop()
 
-# ================== CONFIG & REST OF YOUR APP ==================
 st.set_page_config(
     page_title="NEXUS • Quantum Student AI",
     page_icon="🌌",
