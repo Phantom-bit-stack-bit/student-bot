@@ -1,6 +1,6 @@
 import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
-import login  # Import the login file
+import Login  # Import the login file
 
 # ================== SESSION STATE ==================
 if "logged_in" not in st.session_state:
