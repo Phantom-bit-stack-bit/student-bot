@@ -1,5 +1,17 @@
 import streamlit as st
 from hh import get_best_answer, load_data, build_vocab, auto_correct
+from login import login_page   # ← This line must be here
+
+# Session State
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+# Login Check
+if not st.session_state.logged_in:
+    login_page()
+    st.stop()
+
+# Rest of your app code starts here...
 
 # ================== CONFIG ==================
 st.set_page_config(
