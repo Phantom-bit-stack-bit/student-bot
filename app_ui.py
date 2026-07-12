@@ -31,6 +31,7 @@ st.markdown("""
         text-transform: uppercase;
         letter-spacing: 2px;
         box-shadow: 0 0 15px #00ffcc, 0 0 30px #ff00ff;
+        transition: all 0.3s ease;
     }
     .stButton>button:hover {
         transform: scale(1.05);
@@ -41,6 +42,15 @@ st.markdown("""
         color: #00ffcc;
         border: 2px solid #00ffff;
         border-radius: 10px;
+        font-family: 'Courier New', monospace;
+    }
+    .chat-container {
+        border: 1px solid #00ffff;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 15px 0;
+        background: rgba(10, 10, 31, 0.9);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -138,23 +148,39 @@ if submit:
         else:
             st.warning("📡 DUPLICATE QUERY DETECTED IN TEMPORAL CACHE")
 
-# ================== CHAT DISPLAY (Fixed) ==================
+# ================== CHAT DISPLAY ==================
 if st.session_state.chat_history:
     st.markdown("### 📜 TEMPORAL QUERY LOG")
     for chat in reversed(st.session_state.chat_history):
-        with st.container():
-            st.markdown("**🧬 USER TRANSMISSION**")
-            st.info(chat["question"])
+        
+        interpreted = ""
+        if chat["corrected"] != chat["question"].lower():
+            interpreted = f'''
+                <div style="color:#ffff00; font-size:0.85em; margin-top:8px;">
+                    🔄 Interpreted as: <strong>{chat["corrected"]}</strong>
+                </div>
+            '''
+        
+        st.markdown(f"""
+        <div class="chat-container">
+            <div style="color:#ff00ff; font-weight:bold; margin-bottom:10px;">🧬 USER TRANSMISSION:</div>
+            <div style="margin-bottom:15px; padding:12px; background:rgba(0,0,0,0.6); border-radius:8px; color:#ffffff;">
+                {chat["question"]}
+            </div>
             
-            st.markdown("**🤖 NEXUS RESPONSE**")
-            st.success(chat["answer"])
+            <div style="color:#00ffcc; font-weight:bold; margin-bottom:8px;">🤖 NEXUS RESPONSE:</div>
+            <div style="margin-bottom:15px; padding:18px; background:rgba(0,255,204,0.1); 
+                        border:1px solid #00ffcc; border-radius:8px; line-height:1.6;">
+                {chat["answer"]}
+            </div>
             
-            st.caption(f"📍 Matched: **{chat['matched']}** | ⚙️ Protocol: **{chat['type'].upper()}**")
-            
-            if chat["corrected"] != chat["question"].lower():
-                st.caption(f"🔄 Interpreted as: **{chat['corrected']}**")
-            
-            st.markdown("---")
+            <div style="font-size:0.85em; color:#888;">
+                📍 Matched: <strong>{chat['matched']}</strong> &nbsp;&nbsp;|&nbsp;&nbsp; 
+                ⚙️ Protocol: <strong>{chat['type'].upper()}</strong>
+            </div>
+            {interpreted}
+        </div>
+        """, unsafe_allow_html=True)
 
 # ================== FOOTER ==================
 st.markdown("---")
