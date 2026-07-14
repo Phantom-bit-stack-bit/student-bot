@@ -115,7 +115,36 @@ question = st.text_input(
 )
 
 submit = st.button("🚀 TRANSMIT TO NEXUS", type="primary")
+# ================== VOICE INPUT ==================
+st.markdown("### 🎤 Voice Input")
+col_voice1, col_voice2 = st.columns([3, 1])
 
+with col_voice1:
+    question = st.text_input(
+        "✍️ Type your question or use voice:",
+        value=st.session_state.get("prefill", ""),
+        placeholder="Ask anything..."
+    )
+
+with col_voice2:
+    if st.button("🎤 Speak Now", use_container_width=True):
+        with st.spinner("Listening... 🎙️"):
+            try:
+                # Using browser speech recognition (works in most modern browsers)
+                st.components.v1.html("""
+                <script>
+                    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                    recognition.lang = 'en-US';
+                    recognition.onresult = function(event) {
+                        const text = event.results[0][0].transcript;
+                        document.querySelector('input[aria-label="✍️ Type your question or use voice:"]').value = text;
+                    };
+                    recognition.start();
+                </script>
+                """, height=0)
+                st.success("Voice input activated! Speak now.")
+            except:
+                st.error("Voice input not supported in this browser. Please type your question.")
 # ================== LOGIC ==================
 if submit:
     if len(question.strip()) < 3:
