@@ -152,22 +152,24 @@ if submit:
 
 # ================== CHAT DISPLAY (Fixed) ==================
 if st.session_state.chat_history:
-    st.markdown("### 📜 TEMPORAL QUERY LOG")
-    for chat in reversed(st.session_state.chat_history):
+    st.markdown("### 📚 Your Learning History")
+    for idx, chat in enumerate(reversed(st.session_state.chat_history)):
         with st.container():
-            st.markdown("**🧬 USER TRANSMISSION**")
-            st.info(chat["question"])
-            
-            st.markdown("**🤖 NEXUS RESPONSE**")
+            st.markdown(f"**🧑 You asked:** {chat['question']}")
             st.success(chat["answer"])
             
-            st.caption(f"📍 Matched: **{chat['matched']}** | ⚙️ Protocol: **{chat['type'].upper()}**")
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                st.caption(f"📍 Matched: **{chat['matched']}** | Type: **{chat['type'].upper()}**")
+            with col2:
+                if st.button("📋 Copy", key=f"copy_{idx}"):
+                    st.code(chat["answer"], language=None)
+                    st.toast("✅ Copied to clipboard!", icon="📋")
             
             if chat["corrected"] != chat["question"].lower():
                 st.caption(f"🔄 Interpreted as: **{chat['corrected']}**")
             
             st.markdown("---")
-
 # ================== FOOTER ==================
 st.markdown("---")
 st.markdown("""
