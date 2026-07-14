@@ -88,20 +88,30 @@ selected_subject = "science" if subject == "Science" else "commerce"
 selected_type = "short" if answer_type == "Short" else "long"
 
 # ================== SUGGESTIONS ==================
-st.markdown("### 💡 Try These Questions")
+st.markdown("### 💡 Quick Start Questions")
 suggestions = {
-    "Science": ["What is gravity?", "Explain photosynthesis", "Difference between mass and weight"],
-    "Commerce": ["What is business?", "Explain profit", "Difference between assets and liabilities"]
+    "Science": [
+        "What is gravity?",
+        "Explain photosynthesis",
+        "Difference between mass and weight"
+    ],
+    "Commerce": [
+        "What is business?",
+        "Explain profit",
+        "Difference between assets and liabilities"
+    ]
 }
 
 cols = st.columns(3)
 for i, q in enumerate(suggestions[subject]):
-    if cols[i].button(q, key=f"sug_{i}"):
+    if cols[i].button(q, key=f"suggestion_{i}"):
         st.session_state.prefill = q
+        st.session_state.main_input = q   # This is the key fix
         st.rerun()
 
 # ================== QUERY INPUT ==================
 st.markdown("### ✴️ Ask Your Question")
+
 question = st.text_input(
     "Type your question here:",
     value=st.session_state.get("prefill", ""),
