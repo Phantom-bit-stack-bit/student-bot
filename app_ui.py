@@ -109,33 +109,50 @@ for i, q in enumerate(suggestions[subject]):
 # ================== QUERY INPUT + VOICE ==================
 st.markdown("### ✴️ TRANSMIT QUERY")
 
-col1, col2 = st.columns([4, 1])
+# Main Question Input
+question = st.text_input(
+    "Enter your query to the Neural Core:",
+    value=st.session_state.get("prefill", ""),
+    placeholder="e.g., Explain quantum entanglement...",
+    key="main_question"
+)
 
+# Voice Button + Submit
+col1, col2 = st.columns([1, 1])
 with col1:
-    question = st.text_input(
-        "Enter your query to the Neural Core:",
-        value=st.session_state.get("prefill", ""),
-        placeholder="e.g., Explain quantum entanglement...",
-        key="main_question_input"
-    )
+    submit = st.button("🚀 TRANSMIT TO NEXUS", type="primary", use_container_width=True)
 
 with col2:
-    if st.button("🎤 Speak", use_container_width=True):
-        with st.spinner("🎙️ Listening... Speak now"):
-            st.components.v1.html("""
-            <script>
+    if st.button("🎤 Speak Now", use_container_width=True):
+        st.info("🎙️ Listening... Please speak clearly now!")
+        st.components.v1.html("""
+        <script>
+            try {
                 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
                 recognition.lang = 'en-US';
+                recognition.interimResults = false;
+                recognition.maxAlternatives = 1;
+                
                 recognition.onresult = function(event) {
                     const text = event.results[0][0].transcript;
-                    const input = document.querySelector('input[key="main_question_input"]');
-                    if (input) input.value = text;
+                    const input = document.querySelector('input[key="main_question"]');
+                    if (input) {
+                        input.value = text;
+                        // Trigger input event so Streamlit detects the change
+                        input.dispatchEvent(new Event('input', { bubbles: true }));
+                    }
                 };
+                
+                recognition.onerror = function(e) {
+                    alert("Voice recognition error: " + e.error);
+                };
+                
                 recognition.start();
-            </script>
-            """, height=0)
-
-submit = st.button("🚀 TRANSMIT TO NEXUS", type="primary")
+            } catch(e) {
+                alert("Voice input not supported in this browser. Please use Chrome or Edge.");
+            }
+        </script>
+        """, height=0)
 # ================== LOGIC ==================
 if submit:
     if len(question.strip()) < 3:
