@@ -106,45 +106,36 @@ for i, q in enumerate(suggestions[subject]):
         if st.button(q, key=f"sug_{i}"):
             st.session_state["prefill"] = q
 
-# ================== QUERY INPUT ==================
+# ================== QUERY INPUT + VOICE ==================
 st.markdown("### ✴️ TRANSMIT QUERY")
-question = st.text_input(
-    "Enter your query to the Neural Core:",
-    value=st.session_state.get("prefill", ""),
-    placeholder="e.g., Explain quantum entanglement..."
-)
 
-submit = st.button("🚀 TRANSMIT TO NEXUS", type="primary")
-# ================== VOICE INPUT ==================
-st.markdown("### 🎤 Voice Input")
-col_voice1, col_voice2 = st.columns([3, 1])
+col1, col2 = st.columns([4, 1])
 
-with col_voice1:
+with col1:
     question = st.text_input(
-        "✍️ Type your question or use voice:",
+        "Enter your query to the Neural Core:",
         value=st.session_state.get("prefill", ""),
-        placeholder="Ask anything..."
+        placeholder="e.g., Explain quantum entanglement...",
+        key="main_question_input"
     )
 
-with col_voice2:
-    if st.button("🎤 Speak Now", use_container_width=True):
-        with st.spinner("Listening... 🎙️"):
-            try:
-                # Using browser speech recognition (works in most modern browsers)
-                st.components.v1.html("""
-                <script>
-                    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-                    recognition.lang = 'en-US';
-                    recognition.onresult = function(event) {
-                        const text = event.results[0][0].transcript;
-                        document.querySelector('input[aria-label="✍️ Type your question or use voice:"]').value = text;
-                    };
-                    recognition.start();
-                </script>
-                """, height=0)
-                st.success("Voice input activated! Speak now.")
-            except:
-                st.error("Voice input not supported in this browser. Please type your question.")
+with col2:
+    if st.button("🎤 Speak", use_container_width=True):
+        with st.spinner("🎙️ Listening... Speak now"):
+            st.components.v1.html("""
+            <script>
+                const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                recognition.lang = 'en-US';
+                recognition.onresult = function(event) {
+                    const text = event.results[0][0].transcript;
+                    const input = document.querySelector('input[key="main_question_input"]');
+                    if (input) input.value = text;
+                };
+                recognition.start();
+            </script>
+            """, height=0)
+
+submit = st.button("🚀 TRANSMIT TO NEXUS", type="primary")
 # ================== LOGIC ==================
 if submit:
     if len(question.strip()) < 3:
