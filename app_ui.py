@@ -78,6 +78,15 @@ if st.sidebar.button("🌀 PURGE MEMORY CACHE"):
 st.sidebar.markdown("### 📡 SYSTEM STATUS")
 st.sidebar.success("✅ Quantum Link Stable")
 st.sidebar.progress(0.92)
+st.sidebar.markdown("### 📊 Progress Report")
+total_questions = len(st.session_state.chat_history)
+st.sidebar.metric("Questions Asked", total_questions)
+
+if total_questions > 0:
+    st.sidebar.progress(min(total_questions / 20, 1.0))
+    st.sidebar.caption("Keep learning! You're doing great! 🌟")
+else:
+    st.sidebar.info("Start asking questions to see your progress!")
 
 # ================== HEADER ==================
 col1, col2 = st.columns([1, 4])
