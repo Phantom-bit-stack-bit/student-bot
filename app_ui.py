@@ -25,38 +25,23 @@ st.set_page_config(
 st.markdown("""
 <style>
     .stApp {
-        background: linear-gradient(180deg, #0a0a1f 0%, #1a0033 100%);
-        color: #00ffcc;
+        background: linear-gradient(180deg, #0a1f3d 0%, #1a0033 100%);
     }
     h1, h2, h3 {
         color: #00ffff !important;
-        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-        font-family: 'Courier New', monospace;
+        text-shadow: 0 0 15px #00ffff;
     }
     .stButton>button {
-        background: linear-gradient(45deg, #00ffcc, #ff00ff);
-        color: #000000;
-        border: none;
-        border-radius: 20px;
-        padding: 12px 24px;
+        background: linear-gradient(45deg, #ff00ff, #00ffcc);
+        color: white;
         font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        box-shadow: 0 0 15px #00ffcc, 0 0 30px #ff00ff;
     }
-    .stButton>button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 25px #00ffcc, 0 0 50px #ff00ff;
-    }
-    .stTextInput > div > div > input {
-        background-color: #1a0033;
-        color: #00ffcc;
-        border: 2px solid #00ffff;
-        border-radius: 10px;
+    .stSuccess {
+        background-color: #00ffcc22 !important;
+        border-left: 5px solid #00ffcc;
     }
 </style>
 """, unsafe_allow_html=True)
-
 # ================== LOAD ==================
 data = load_data()
 vocab = build_vocab(data)
